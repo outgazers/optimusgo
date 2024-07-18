@@ -1,0 +1,12 @@
+.chat-container{
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(187,187,187,1) 100%, rgba(187,187,187,0.20772058823529416) 100%);
+  .chat-bg{
+    /* From https://css.glass */
+    background: rgba(187, 187, 187, 0.28);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.3px);
+    -webkit-backdrop-filter: blur(6.3px);
+    border: 1px solid rgba(187, 187, 187, 0.38);
+  }
+}

@@ -1,0 +1,23 @@
+.custom-scrollbar {
+    /* width */
+    ::-webkit-scrollbar {
+        @apply w-[6px];
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 rounded;
+
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-400;
+    }
+}
+

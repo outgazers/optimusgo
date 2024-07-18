@@ -1,0 +1,41 @@
+.menu-template-container {
+    top: unset !important;
+    bottom: 48px !important;
+    width: 576px !important;
+}
+.ngx-text-highlight-tag {
+    color:  unset !important;
+    font-weight: unset !important;
+    padding: 2px 4px !important;
+    margin: -2px -4px !important;
+    background-color: #E5E7EB !important;
+    border-radius: 14px !important;
+}
+.ngx-selectable-list {
+    padding: 0;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    z-index: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    max-height: 400px;
+    overflow: auto;
+
+    .ngx-selectable-list-item {
+        min-height: 20px;
+
+        &:hover, &.active {
+            background-color: #E5E7EB;
+        }
+
+        div>span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: middle;
+            max-width: 100%;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.p-multiselect {
+    @apply border-gray-400;
+
+    &.p-focus {
+        @apply shadow-none focus:border border-teal-500;
+    }
+
+    &.p-multiselect-sm {
+        .p-multiselect-label {
+            height: 40px;
+            font-size: 0.875rem;
+            padding: 0.65625rem 0.65625rem;
+        }
+    }
+}
+
+.p-multiselect-panel {
+    &.p-multiselect-sm {
+        .p-multiselect-filter {
+            height: 40px;
+            font-size: 0.875rem;
+            padding: 0.65625rem 0.65625rem;
+        }
+    } 
+}

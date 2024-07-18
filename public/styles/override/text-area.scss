@@ -1,0 +1,7 @@
+textarea.p-inputtextarea {
+    @apply border-gray-400 text-gray-900 focus:shadow-none focus:border-teal-500;
+
+    &.ng-invalid.ng-touched {
+        @apply border-red-500
+    }
+}

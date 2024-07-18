@@ -1,0 +1,70 @@
+<div class="chat-container h-full w-full p-4 ">
+  <div class="chat-bg grid grid-rows-[1fr_64px] h-full w-full shadow-3 rounded-lg overflow-hidden">
+    <div class="messages flex flex-col-reverse p-4 overflow-auto custom-scrollbar max-h-[772px]">
+      <div class="sent w-full flex-row-reverse flex items-end mt-4 last:mt-0">
+        <img class="rounded-full w-5 h-5 ml-4" src="images/system-user.jpg">
+        <div class="message rounded-lg bg-white text-black bg-opacity-90 p-4 max-w-[40rem]">
+          How can I find more leads in my business?
+        </div>
+      </div>
+
+      <div class="incoming w-full flex-row flex items-end  mt-4 last:m-0">
+        <img class="rounded-full w-5 h-5 mr-4" src="images/Optimus.jpg">
+        <div class="message rounded-lg bg-black bg-opacity-90 p-4 text-white max-w-[40rem]">
+          Finding more leads for your business can be achieved through various methods. Here are some suggestions:
+
+          Network: Attend industry events, conferences, and local business meetups to connect with potential customers and partners.
+          Content Marketing: Create and share valuable content like blog posts, eBooks, webinars, and podcasts to attract and engage potential leads.
+          SEO: Optimize your website for search engines to increase visibility and drive organic traffic.
+          Social Media: Use social media platforms like LinkedIn, Twitter, and Facebook to promote your business and engage with potential leads.
+          Email Marketing: Build an email list and send newsletters, product updates, and promotions to your subscribers.
+          PPC Advertising: Run pay-per-click campaigns on Google Ads or social media platforms to target specific audiences and generate leads.
+          Referral Programs: Encourage your existing customers to refer friends and family in exchange for rewards.
+          Partnerships: Collaborate with other businesses that have a similar target audience to cross-promote your products and services.
+        </div>
+      </div>
+
+      <div class="sent w-full flex-row-reverse flex items-end mt-4 last:mt-0">
+        <img class="rounded-full w-5 h-5 ml-4" src="images/system-user.jpg">
+        <div class="message rounded-lg bg-white text-black bg-opacity-90 p-4 max-w-[40rem]">
+          How can I find more leads in my business?
+        </div>
+      </div>
+
+      <div class="incoming w-full flex-row flex items-end mt-4 last:mt-0">
+        <img class="rounded-full w-5 h-5 mr-4" src="images/Optimus.jpg">
+        <div class="message rounded-lg bg-black bg-opacity-90 p-4 text-white max-w-[40rem]">
+          Finding more leads for your business can be achieved through various methods. Here are some suggestions:
+
+          Network: Attend industry events, conferences, and local business meetups to connect with potential customers and partners.
+          Content Marketing: Create and share valuable content like blog posts, eBooks, webinars, and podcasts to attract and engage potential leads.
+          SEO: Optimize your website for search engines to increase visibility and drive organic traffic.
+          Social Media: Use social media platforms like LinkedIn, Twitter, and Facebook to promote your business and engage with potential leads.
+          Email Marketing: Build an email list and send newsletters, product updates, and promotions to your subscribers.
+          PPC Advertising: Run pay-per-click campaigns on Google Ads or social media platforms to target specific audiences and generate leads.
+          Referral Programs: Encourage your existing customers to refer friends and family in exchange for rewards.
+          Partnerships: Collaborate with other businesses that have a similar target audience to cross-promote your products and services.
+        </div>
+      </div>
+    </div>
+    <div class="control bg-gray-200 ">
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="submitForm()"
+        #formGroupDir="ngForm"
+        class="flex justify-between items-center p-2"
+      >
+        <input
+          type="text"
+          pInputText
+          id="message"
+          [attr.placeholder]="'Write a message...'"
+          formControlName="message"
+          class="border-none text-base text-black bg-gray-200 flex-grow"
+        />
+
+        <p-button severity="secondary" icon="pi pi-send"></p-button>
+      </form>
+    </div>
+  </div>
+</div>

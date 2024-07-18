@@ -1,0 +1,93 @@
+<div class="max-h-screen overflow-hidden relative ">
+  <div class="background-gradient w-full h-screen"></div>
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div class="p-8 rounded-2xl w-[440px] h-[648px] login-card-gradient">
+      <div class="">
+        <div class="text-xl font-medium text-white mb-8">Login</div>
+        <div class="mb-8 flex flex-col justify-center">
+          <div class="logo-image h-24 mb-3 flex justify-center">
+            <img class="h-full" src="images/Optimus.jpg" />
+          </div>
+          <div class="text-xl font-medium text-center text-white">
+            Welcome Back
+          </div>
+        </div>
+        <form
+          [formGroup]="formGroup"
+          (ngSubmit)="submitForm()"
+          #formGroupDir="ngForm"
+          class="mb-14"
+        >
+          <div class="mb-4">
+            <label class="block text-sm mb-1 text-white" for="username"
+              >username</label
+            >
+            <input
+              type="text"
+              pInputText
+              id="username"
+              [attr.placeholder]="'username'"
+              formControlName="username"
+              class="w-full border-gray-400 text-base text-black"
+              [class.border-red-500]="
+                (formGroup.get('username')?.invalid &&
+                  formGroup.get('username')?.touched) ||
+                (formGroupDir.submitted && formGroup.get('username')?.invalid)
+              "
+            />
+            <div class="text-xs h-4 text-red-600">
+              @if((formGroup.get('username')?.invalid &&
+              formGroup.get('username')?.touched) || (formGroupDir.submitted &&
+              formGroup.get('username')?.invalid)){
+
+              <small class="p-invalid my-1 fadeInDown animated absolute"
+                >This field is required!</small
+              >
+              }
+            </div>
+          </div>
+          <div class="mb-14">
+            <label class="block text-sm mb-1 text-white" for="password"
+              >Password</label
+            >
+            <p-password
+              type="password"
+              id="password"
+              [placeholder]="'password'"
+              formControlName="password"
+              [toggleMask]="true"
+              [feedback]="false"
+              inputStyleClass="w-full text-base text-black"
+              styleClass="w-full"
+              class="w-full border-gray-400"
+              [class.border-red-500]="
+                (formGroup.get('password')?.invalid &&
+                  formGroup.get('password')?.touched) ||
+                (formGroupDir.submitted && formGroup.get('password')?.invalid)
+              "
+            >
+            </p-password>
+            <div class="text-xs h-4 text-red-600">
+              @if( (formGroup.get('password')?.invalid &&
+              formGroup.get('password')?.touched) || (formGroupDir.submitted &&
+              formGroup.get('password')?.invalid)){
+              <small class="p-invalid my-1 fadeInDown animated absolute"
+                >This field is required!</small
+              >
+              }
+            </div>
+          </div>
+          <div class="flex flex-col justify-center items-center w-full">
+            <p-button type="submit" class="w-full mb-4" styleClass="w-full text-white" label="Login"></p-button>
+            <p-button class="w-full" severity="secondary" styleClass="w-full text-white" label="Register" (click)="goToRegisterPage()"></p-button>
+          </div>
+        </form>
+        <div class="text-center text-sm font-normal text-white">
+          <div class="mb-1">2024 - OptimusGO</div>
+          <div>{{ version }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

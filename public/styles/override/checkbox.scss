@@ -1,0 +1,17 @@
+.p-checkbox {
+    .p-checkbox-box {
+        &.p-highlight {
+            @apply bg-teal-600 border border-solid border-teal-600
+        }
+    }
+    &:not(.p-checkbox-disabled) {
+        .p-checkbox-box{
+            &.p-focus {
+                @apply border border-solid border-teal-600 shadow-none;
+            }
+            &:hover {
+                @apply border border-solid border-teal-600;
+            }
+        }
+    }
+}

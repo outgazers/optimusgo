@@ -1,0 +1,9 @@
+.p-tabview {
+    .p-tabview-panels {
+        @apply py-2;
+    }
+    .p-tabview-nav li .p-tabview-nav-link {
+        @apply p-4 m-0;
+
+    }
+}
