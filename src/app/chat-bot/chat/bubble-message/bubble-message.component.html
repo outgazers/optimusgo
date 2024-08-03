@@ -1,0 +1,16 @@
+<div
+  class="w-full flex items-end mt-4 last:m-0 gap-4"
+  [ngClass]="type() === 'user' ? 'sent flex-row-reverse' : 'incoming'"
+>
+  @if (type() !== 'user') {
+  <img class="rounded-full w-5 h-5" src="images/Optimus.jpg" />
+  }
+  <div
+    class="message rounded-lg bg-opacity-90 p-4 max-w-[40rem]"
+    [ngClass]="
+      type() === 'user' ? 'bg-white text-black' : 'bg-black text-white'
+    "
+  >
+    {{ content() }}
+  </div>
+</div>
