@@ -17,6 +17,6 @@ jobs:
         with:
           context: .
           push: true
-          tag: outgazers/optimus-front:latest
+          tags: outgazers/optimus-front:latest
 
     
