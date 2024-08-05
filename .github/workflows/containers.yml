@@ -1,3 +1,4 @@
+name: Build And Push to DOcker Hub
 on: push
 jobs:
   build-container:
@@ -11,3 +12,11 @@ jobs:
         with:
           username:  ${{ secrets.DOCKER_HUB_USERNAME }}
           password:  ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      - name: build and push docke hub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tag: outgazers/optimus-front:latest
+
+    
