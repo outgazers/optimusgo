@@ -1,9 +1,8 @@
-
 on: push
 jobs:
-  build-image:
-    name: build-docker-image
-    runs-on: ubuntu-lateset
+  build-container:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v3
