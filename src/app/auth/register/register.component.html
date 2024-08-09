@@ -1,7 +1,7 @@
-<div class="max-h-screen overflow-hidden relative ">
+<div class="max-h-screen overflow-hidden relative">
   <div class="background-gradient w-full h-screen"></div>
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-    <div class="p-8 rounded-2xl w-[960px] h-[768px] login-card-gradient ">
+    <div class="p-8 rounded-2xl w-[960px] h-[768px] login-card-gradient">
       <div class="">
         <div class="text-xl font-medium text-white mb-8">Register</div>
         <form
@@ -13,8 +13,8 @@
           <div class="grid grid-cols-2 gap-4 custom-scrollbar overflow-y-auto">
             <div>
               <label class="block text-sm mb-1 text-white" for="companyName"
-              >Company Name: </label
-              >
+                >Company Name:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -26,8 +26,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="locationAndCity"
-              >Location state and city: </label
-              >
+                >Location state and city:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -39,8 +39,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="mcNumber"
-              >MC#: </label
-              >
+                >MC#:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -52,8 +52,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="name"
-              >Name: </label
-              >
+                >Name:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -65,8 +65,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="email"
-              >Email address: </label
-              >
+                >Email address:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -78,8 +78,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="phone"
-              >Phone number: </label
-              >
+                >Phone number:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -91,8 +91,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="yearsInBusiness"
-              >Years in business: </label
-              >
+                >Years in business:
+              </label>
               <input
                 type="text"
                 pInputText
@@ -103,22 +103,37 @@
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="modesOfTransportation"
-              >Modes of transportation: </label
-              >
-              <input
+              <label
+                class="block text-sm mb-1 text-white"
+                for="modesOfTransportation"
+                >Modes of transportation:
+              </label>
+              <p-dropdown
+                class="w-full border-gray-400 text-base text-black"
+                formControlName="modesOfTransportation"
+                styleClass="w-full"
+                [showClear]="true"
+                [placeholder]="'modesOfTransportation'"
+                appendTo="body"
+                [options]="[
+                  { label: 'city 1', value: 0 },
+                  { label: 'city 2', value: 1 },
+                  { label: 'city 3', value: 2 }
+                ]"
+              ></p-dropdown>
+              <!-- <input
                 type="text"
                 pInputText
                 id="modesOfTransportation"
                 [attr.placeholder]="'modesOfTransportation'"
                 formControlName="modesOfTransportation"
                 class="w-full border-gray-400 text-base text-black"
-              />
+              /> -->
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="industry"
-              >What industry do you move freight for? </label
-              >
+                >What industry do you move freight for?
+              </label>
               <input
                 type="text"
                 pInputText
@@ -130,8 +145,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="tms"
-              >Do you have customer facing TMS (if yes, what TMS?) </label
-              >
+                >Do you have customer facing TMS (if yes, what TMS?)
+              </label>
               <input
                 type="text"
                 pInputText
@@ -143,8 +158,8 @@
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="netTerms"
-              >What net terms you can extend to your customers </label
-              >
+                >What net terms you can extend to your customers
+              </label>
               <input
                 type="text"
                 pInputText
@@ -155,9 +170,11 @@
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="assetBaseCompany"
-              >Are you an asset based or non asset based company? </label
-              >
+              <label
+                class="block text-sm mb-1 text-white"
+                for="assetBaseCompany"
+                >Are you an asset based or non asset based company?
+              </label>
               <input
                 type="text"
                 pInputText
@@ -169,8 +186,19 @@
             </div>
           </div>
           <div class="flex flex-col justify-center items-center w-full mt-4">
-            <p-button class="w-full mb-4" type="submit" styleClass="w-full" label="Register"></p-button>
-            <p-button class="w-full" severity="secondary" styleClass="w-full" label="Login" (click)="goToLoginPage()"></p-button>
+            <p-button
+              class="w-full mb-4"
+              type="submit"
+              styleClass="w-full"
+              label="Register"
+            ></p-button>
+            <p-button
+              class="w-full"
+              severity="secondary"
+              styleClass="w-full"
+              label="Login"
+              (click)="goToLoginPage()"
+            ></p-button>
           </div>
         </form>
         <div class="text-center text-sm font-normal text-white">
