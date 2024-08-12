@@ -7,7 +7,7 @@ RUN npm run build --prod
 #EXPOSE 4200
 CMD ["npm", "start"]
 
-#EXPOSE 4200
+#EXPOSE 42000
 
 
 FROM nginx:alpine AS runtime-env
