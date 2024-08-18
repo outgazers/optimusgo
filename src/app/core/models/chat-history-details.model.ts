@@ -12,5 +12,5 @@ export interface Message {
   content: string;
 }
 
-export type role = 'user' | 'assistant' | 'system' | 'pending';
+export type role = 'human' | 'assistant' | 'system' | 'pending';
 
