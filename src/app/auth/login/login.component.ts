@@ -10,8 +10,8 @@ import { PasswordModule } from 'primeng/password';
 import { environment } from '../../../../environments/environment';
 import { ButtonModule } from 'primeng/button';
 import { ActivatedRoute, Router } from '@angular/router';
-import {InputTextModule} from "primeng/inputtext";
-import {MessageService} from "primeng/api";
+import { InputTextModule } from "primeng/inputtext";
+import { MessageService } from "primeng/api";
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public goToRegisterPage(){
+  public goToRegisterPage() {
     this.router.navigate(['/register'])
   }
 

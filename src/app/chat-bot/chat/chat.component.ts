@@ -1,12 +1,12 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
-import { ActivatedRoute, Router } from "@angular/router";
-import { MessageService } from "primeng/api";
+import { ActivatedRoute } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { BubbleMessageComponent, messageTypeEnum } from './bubble-message/bubble-message.component';
 import { Conversation } from '../../core/models/chat-histories.model';
 import { Message } from '../../core/models/chat-history-details.model';
+import { ChatDataService } from '../../core/services/chat-data.service';
 
 @Component({
   selector: 'app-chat',
@@ -22,18 +22,16 @@ import { Message } from '../../core/models/chat-history-details.model';
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent {
+  chatService = inject(ChatDataService);
+  fb = inject(FormBuilder);
+  route = inject(ActivatedRoute);
+
   public formGroup!: FormGroup;
   messageType = messageTypeEnum;
   conversations = input.required<Conversation[]>();
   conversationId: number = 0;
   conversation!: Message[];
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly router: Router,
-    private readonly fb: FormBuilder,
-    private messageService: MessageService
-  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -51,7 +49,17 @@ export class ChatComponent {
     });
   }
 
-  submitForm() {
-    console.log(this.formGroup.value);
+  createMessage() {
+    this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe((res) => {
+      this.conversation.push(
+        {
+          id: this.conversation.length + 1,
+          role: 'user',
+          content: this.formGroup.value.message
+        }
+      );
+
+      this.formGroup.patchValue({ message: '' });
+    })
   }
 }
