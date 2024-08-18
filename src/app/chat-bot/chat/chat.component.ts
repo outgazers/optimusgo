@@ -54,7 +54,7 @@ export class ChatComponent {
       this.conversation?.push(
         {
           id: this.conversation.length + 1,
-          role: 'user',
+          role: 'human',
           content: this.formGroup.value.message
         }
       );
