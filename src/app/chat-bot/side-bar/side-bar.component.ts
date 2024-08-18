@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { ButtonModule } from "primeng/button";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -18,6 +18,7 @@ export class SideBarComponent {
   router = inject(Router);
   chatService = inject(ChatDataService)
   conversations = input.required<Conversation[]>();
+  conversationsUpdated = output<Conversation>();
   public version = environment.version;
 
   goToConversation(convId: number) {
@@ -27,6 +28,7 @@ export class SideBarComponent {
 
   createConversation() {
     this.chatService.createConversation().subscribe((res) => {
+      this.conversationsUpdated.emit(res);
       this.router.navigate(['/chat'], { queryParams: { id: res.id } });
     })
   }

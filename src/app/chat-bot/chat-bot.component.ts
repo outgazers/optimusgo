@@ -23,4 +23,8 @@ export class ChatBotComponent implements OnInit {
     });
   }
 
+  onConversationsUpdated(conversations: Conversation) {
+    this.conversations.push(conversations);
+  }
+
 }

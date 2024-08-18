@@ -21,11 +21,11 @@ export class ChatDataService {
   }
 
   createConversation(): Observable<Conversation> {
-    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations`, {});
+    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations`, { 'user-id': user_id });
   }
 
   createMessage(conversationId: number, message: string): Observable<Conversation> {
-    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations/${conversationId}/messages`, { message });
+    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations/${conversationId}/messages`, { 'input': message, 'user-id': user_id });
   }
 
   // public setLocalStorageForAllChat(chatHistory: ChatHistoryDetails): void {

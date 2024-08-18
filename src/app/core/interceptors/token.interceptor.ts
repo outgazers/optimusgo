@@ -17,25 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (token) {
       request = request.clone({
         headers: new HttpHeaders({
-          'user-id': user_id,
           Authorization: `Bearer ${token}`,
-          'Access-Control-Allow-Headers':
-            'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-          'Access-Control-Allow-Methods': 'OPTIONS,POST',
-          'Access-Control-Allow-Credentials': 'true',
-          'Access-Control-Allow-Origin': '*',
-          'X-Requested-With': '*',
-        }),
-      });
-    } else {
-      request = request.clone({
-        headers: new HttpHeaders({
-          'Access-Control-Allow-Headers':
-            'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-          'Access-Control-Allow-Methods': 'OPTIONS,POST',
-          'Access-Control-Allow-Credentials': 'true',
-          'Access-Control-Allow-Origin': '*',
-          'X-Requested-With': '*',
         }),
       });
     }
