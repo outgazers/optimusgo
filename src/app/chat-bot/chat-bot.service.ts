@@ -11,9 +11,6 @@ import { Observable } from 'rxjs';
 export class ChatBotService {
   http = inject(HttpClient);
 
-  getConversations(): Observable<Conversation[]> {
-    return this.http.get<Conversation[]>(`${environment.gatewayUrl}/api/conversations?user-id=${user_id}`);
-  }
 
   // createChat(messages: ChatCompletionMessageParam[]) {
   //   return this.http.post(this.baseUrl, {

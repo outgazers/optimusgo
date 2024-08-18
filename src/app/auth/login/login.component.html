@@ -1,4 +1,4 @@
-<div class="max-h-screen overflow-hidden relative ">
+<div class="max-h-screen overflow-hidden relative">
   <div class="background-gradient w-full h-screen"></div>
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
     <div class="p-8 rounded-2xl w-[440px] h-[648px] login-card-gradient">
@@ -13,32 +13,32 @@
           </div>
         </div>
         <form
-          [formGroup]="formGroup"
-          (ngSubmit)="submitForm()"
+          [formGroup]="loginForm"
+          (ngSubmit)="login()"
           #formGroupDir="ngForm"
           class="mb-14"
         >
           <div class="mb-4">
-            <label class="block text-sm mb-1 text-white" for="username"
-              >Username</label
+            <label class="block text-sm mb-1 text-white" for="email"
+              >email</label
             >
             <input
               type="text"
               pInputText
-              id="username"
-              [attr.placeholder]="'username'"
-              formControlName="username"
+              id="email"
+              [attr.placeholder]="'email'"
+              formControlName="email"
               class="w-full border-gray-400 text-base text-black"
               [class.border-red-500]="
-                (formGroup.get('username')?.invalid &&
-                  formGroup.get('username')?.touched) ||
-                (formGroupDir.submitted && formGroup.get('username')?.invalid)
+                (loginForm.get('email')?.invalid &&
+                  loginForm.get('email')?.touched) ||
+                (formGroupDir.submitted && loginForm.get('email')?.invalid)
               "
             />
             <div class="text-xs h-4 text-red-600">
-              @if((formGroup.get('username')?.invalid &&
-              formGroup.get('username')?.touched) || (formGroupDir.submitted &&
-              formGroup.get('username')?.invalid)){
+              @if((loginForm.get('email')?.invalid &&
+              loginForm.get('email')?.touched) || (formGroupDir.submitted &&
+              loginForm.get('email')?.invalid)){
 
               <small class="p-invalid my-1 fadeInDown animated absolute"
                 >This field is required!</small
@@ -61,16 +61,16 @@
               styleClass="w-full"
               class="w-full border-gray-400"
               [class.border-red-500]="
-                (formGroup.get('password')?.invalid &&
-                  formGroup.get('password')?.touched) ||
-                (formGroupDir.submitted && formGroup.get('password')?.invalid)
+                (loginForm.get('password')?.invalid &&
+                  loginForm.get('password')?.touched) ||
+                (formGroupDir.submitted && loginForm.get('password')?.invalid)
               "
             >
             </p-password>
             <div class="text-xs h-4 text-red-600">
-              @if( (formGroup.get('password')?.invalid &&
-              formGroup.get('password')?.touched) || (formGroupDir.submitted &&
-              formGroup.get('password')?.invalid)){
+              @if( (loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched) || (formGroupDir.submitted &&
+              loginForm.get('password')?.invalid)){
               <small class="p-invalid my-1 fadeInDown animated absolute"
                 >This field is required!</small
               >
@@ -78,8 +78,19 @@
             </div>
           </div>
           <div class="flex flex-col justify-center items-center w-full">
-            <p-button type="submit" class="w-full mb-4" styleClass="w-full text-white" label="Login"></p-button>
-            <p-button class="w-full" severity="secondary" styleClass="w-full text-white" label="Register" (click)="goToRegisterPage()"></p-button>
+            <p-button
+              type="submit"
+              class="w-full mb-4"
+              styleClass="w-full text-white"
+              label="Login"
+            ></p-button>
+            <p-button
+              class="w-full"
+              severity="secondary"
+              styleClass="w-full text-white"
+              label="Register"
+              (click)="goToRegisterPage()"
+            ></p-button>
           </div>
         </form>
         <div class="text-center text-sm font-normal text-white">
@@ -90,4 +101,3 @@
     </div>
   </div>
 </div>
-

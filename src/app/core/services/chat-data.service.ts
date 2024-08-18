@@ -17,15 +17,15 @@ export class ChatDataService {
 
   constructor() { }
   getConversations(): Observable<Conversation[]> {
-    return this.http.get<Conversation[]>(`${environment.gatewayUrl}/api/conversations?user-id=${user_id}`);
+    return this.http.get<Conversation[]>(`${environment.gatewayUrl}/chat/conversations?user-id=${user_id}`);
   }
 
   createConversation(): Observable<Conversation> {
-    return this.http.post<Conversation>(`${environment.gatewayUrl}/api/conversations`, {});
+    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations`, {});
   }
 
   createMessage(conversationId: number, message: string): Observable<Conversation> {
-    return this.http.post<Conversation>(`${environment.gatewayUrl}/api/conversations/${conversationId}/messages`, { message });
+    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations/${conversationId}/messages`, { message });
   }
 
   // public setLocalStorageForAllChat(chatHistory: ChatHistoryDetails): void {

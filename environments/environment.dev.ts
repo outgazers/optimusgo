@@ -3,5 +3,5 @@ export const environment = {
   version: '1.0.0',
   name: 'development',
   appName: 'Optimusgo',
-  gatewayUrl: 'http://135.237.123.239:5003',
+  gatewayUrl: 'http://135.237.123.239:5000',
 }

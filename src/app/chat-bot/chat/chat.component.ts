@@ -30,14 +30,13 @@ export class ChatComponent {
   messageType = messageTypeEnum;
   conversations = input.required<Conversation[]>();
   conversationId: number = 0;
-  conversation!: Message[];
+  conversation: Message[] | undefined;
 
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.conversationId = params['id'] ? +params['id'] : 0;
-      this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)!.messages;
-      console.log('Conversation ID:', this.conversationId);
+      this.conversationId = params['id'] ? params['id'] : 0;
+      this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages;
     });
     this.createForm();
   }
@@ -51,7 +50,7 @@ export class ChatComponent {
 
   createMessage() {
     this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe((res) => {
-      this.conversation.push(
+      this.conversation?.push(
         {
           id: this.conversation.length + 1,
           role: 'user',
