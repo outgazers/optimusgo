@@ -49,7 +49,6 @@ export class AuthService {
 
   public initial() {
     const token = this.localStorage.read('token')?.toString();
-    const userData = this.localStorage.read('userData');
     // const _ = atob(userData.toString());
     // const userInfo = JSON.parse(_);
     try {
@@ -77,7 +76,7 @@ export class AuthService {
     this.tokenSource.next(null);
     this.isLoginSource.next(false);
     this._logout.next(true);
-    this.router.navigate(['/auth/login']);
+    // this.router.navigate(['/login']);
   }
 
   public setUserToken(user: any) {

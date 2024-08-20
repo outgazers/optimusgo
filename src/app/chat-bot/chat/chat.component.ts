@@ -37,7 +37,6 @@ export class ChatComponent {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
       this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages;
-      console.log(this.conversation);
     });
     this.createForm();
   }

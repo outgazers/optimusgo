@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MessageService } from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { NavBarComponent } from './chat-bot/nav-bar/nav-bar.component';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,8 @@ import { NavBarComponent } from './chat-bot/nav-bar/nav-bar.component';
 })
 export class AppComponent {
   title = 'optimusgo';
+  authService = inject(AuthService);
+  constructor() {
+    this.authService.initial();
+  }
 }

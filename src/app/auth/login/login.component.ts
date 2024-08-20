@@ -43,9 +43,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.version = environment.version;
+
   }
 
   login() {
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
 
     if (this.loginForm.invalid) {
       return;
@@ -64,10 +66,10 @@ export class LoginComponent implements OnInit {
             detail: `you've logged in successfully`,
           });
           if (res.role !== 'admin') {
-            this.router.navigate(['/chat']);
+            returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/status']);
             return;
           }
-          this.router.navigate(['/chat']);
+          returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/status']);
           // });
         },
         error: (err) => {
