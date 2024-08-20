@@ -5,7 +5,7 @@
       <div class="">
         <div class="text-xl font-medium text-white mb-8">Register</div>
         <form
-          [formGroup]="formGroup"
+          [formGroup]="signupForm"
           (ngSubmit)="submitForm()"
           #formGroupDir="ngForm"
           class="mb-14"
@@ -115,20 +115,10 @@
                 [showClear]="true"
                 [placeholder]="'modesOfTransportation'"
                 appendTo="body"
-                [options]="[
-                  { label: 'city 1', value: 0 },
-                  { label: 'city 2', value: 1 },
-                  { label: 'city 3', value: 2 }
-                ]"
+                [options]="modeOfTransportationOptions"
+                optionLabel="name"
+                optionValue="id"
               ></p-dropdown>
-              <!-- <input
-                type="text"
-                pInputText
-                id="modesOfTransportation"
-                [attr.placeholder]="'modesOfTransportation'"
-                formControlName="modesOfTransportation"
-                class="w-full border-gray-400 text-base text-black"
-              /> -->
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="industry"

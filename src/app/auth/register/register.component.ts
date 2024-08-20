@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +14,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
+import { UserService } from '../../core/services/user.service';
+import { CustomerService } from '../../core/services/customer.service';
 
 export interface registerForm {
   companyName: FormControl<null | string>;
@@ -45,12 +47,21 @@ export interface registerForm {
   ],
 })
 export class RegisterComponent implements OnInit {
-  public formGroup!: FormGroup<registerForm>;
+  userService = inject(UserService);
+  customerService = inject(CustomerService);
+  public signupForm!: FormGroup<registerForm>;
   public version: string = '';
   public isLoading: boolean = false;
+  modeOfTransportationOptions: { name: string; id: number }[] = [
+    { name: 'Air', id: 1 },
+    { name: 'Water', id: 2 },
+    { name: 'Land', id: 3 },
+    { name: 'Rail', id: 4 },
+    { name: 'Sea', id: 5 },
+    { name: 'Other', id: 6 },
+  ]
 
   constructor(
-    private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly fb: FormBuilder,
     private readonly messageService: MessageService
@@ -62,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private createForm() {
-    this.formGroup = this.fb.group({
+    this.signupForm = this.fb.group({
       companyName: ['', Validators.required],
       locationAndCity: ['', Validators.required],
       name: ['', Validators.required],
@@ -83,18 +94,43 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm(): void {
-    if (this.formGroup.invalid) {
+    if (this.signupForm.valid) {
+      const values = this.signupForm.value;
+      this.userService.signup(values).subscribe(
+        res => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'You are registered successfully',
+          });
+          this.router.navigate(['/auth/login']);
+        },
+        err => {
+        },
+      );
+    }
+    console.log(this.signupForm.getRawValue());
+    if (this.signupForm.invalid) {
       return;
     }
-    const form = this.formGroup.getRawValue();
+    const form = this.signupForm.getRawValue();
+    this.customerService.registerProfile(form).subscribe({
+      next: (res: any) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: `you have logged in successfully`,
+          life: 500,
+        });
+        this.router.navigate(['/login']);
 
-    this.messageService.add({
-      severity: 'success',
-      summary: `you have logged in successfully`,
-      life: 500,
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: `You'r regsitration was unsuccessful please try again!`,
+        });
+      },
     });
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 1000);
   }
 }
