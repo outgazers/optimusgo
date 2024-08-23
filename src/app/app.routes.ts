@@ -8,7 +8,7 @@ import { SignupComponent } from './auth/signup/signup/signup.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/chat',
     pathMatch: 'full'
   },
   {

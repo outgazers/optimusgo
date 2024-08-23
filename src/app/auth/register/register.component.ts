@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
@@ -16,21 +16,40 @@ import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { UserService } from '../../core/services/user.service';
 import { CustomerService } from '../../core/services/customer.service';
+import { user_id } from '../../core/interceptors/token.interceptor';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 export interface registerForm {
-  companyName: FormControl<null | string>;
-  locationAndCity: FormControl<string | null>;
-  name: FormControl<string | null>;
-  mcNumber: FormControl<number | null>;
-  email: FormControl<string | null>;
-  phone: FormControl<number | null>;
-  yearsInBusiness: FormControl<number | null>;
-  modesOfTransportation: FormControl<number | null>;
-  industry: FormControl<string | null>;
-  tms: FormControl<string | null>;
+  customerId: FormControl<string | null>;
+  fullName: FormControl<string | null>;
+  companyName: FormControl<string | null>;
+  locationStateAndCity: FormControl<string | null>;
+  mc: FormControl<string | null>;
+  phoneNumber: FormControl<string | null>;
   netTerms: FormControl<string | null>;
-  assetBaseCompany: FormControl<string | null>;
+  tms: FormControl<string | null>;
+  isAssetBase: FormControl<boolean | null>;
+  modesOfTransportation: FormControl<string | null>;
+  industry: FormControl<string | null>;
+  yearsInBusiness: FormControl<number | null>;
 }
+export enum ModsOfTransportation {
+  AirFreight,
+  Expedited,
+  LTL,
+  FTL,
+  OpenDeck,
+  Tankers,
+  Rail,
+  DryVan,
+  Reefer,
+  LowBoy,
+  OceanFreight,
+  CrossBorder,
+  DropTrailers,
+  PowerOnly
+}
+
 
 @Component({
   selector: 'app-register',
@@ -43,8 +62,7 @@ export interface registerForm {
     PasswordModule,
     ButtonModule,
     InputTextModule,
-    DropdownModule,
-  ],
+    MultiSelectModule],
 })
 export class RegisterComponent implements OnInit {
   userService = inject(UserService);
@@ -52,14 +70,40 @@ export class RegisterComponent implements OnInit {
   public registerForm!: FormGroup<registerForm>;
   public version: string = '';
   public isLoading: boolean = false;
-  modeOfTransportationOptions: { name: string; id: number }[] = [
-    { name: 'Air', id: 1 },
-    { name: 'Water', id: 2 },
-    { name: 'Land', id: 3 },
-    { name: 'Rail', id: 4 },
-    { name: 'Sea', id: 5 },
-    { name: 'Other', id: 6 },
+  modeOfTransportationOptions: string[] = [
+    'AirFreight',
+    'Expedited',
+    'LTL',
+    'FTL',
+    'OpenDeck',
+    'Tankers',
+    'Rail',
+    'DryVan',
+    'Reefer',
+    'LowBoy',
+    'OceanFreight',
+    'CrossBorder',
+    'DropTrailers',
+    'PowerOnly',
   ]
+
+  // enum ModsOfTransportation  ={
+  //     AirFreight,
+  //     Expedited,
+  //     LTL,
+  //     FTL,
+  //     OpenDeck,
+  //     Tankers,
+  //     Rail,
+  //     DryVan,
+  //     Reefer,
+  //     LowBoy,
+  //     OceanFreight,
+  //     CrossBorder,
+  //     DropTrailers,
+  //     PowerOnly
+  // }
+
 
   constructor(
     private readonly router: Router,
@@ -74,18 +118,18 @@ export class RegisterComponent implements OnInit {
 
   private createForm() {
     this.registerForm = this.fb.group({
+      customerId: ['', Validators.required],
+      fullName: ['', Validators.required],
       companyName: ['', Validators.required],
-      locationAndCity: ['', Validators.required],
-      name: ['', Validators.required],
-      mcNumber: [0, Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [0, Validators.required],
-      yearsInBusiness: [0, Validators.required],
-      modesOfTransportation: [0, Validators.required],
-      industry: ['', Validators.required],
-      tms: ['', Validators.required],
+      locationStateAndCity: ['', Validators.required],
+      mc: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       netTerms: ['', Validators.required],
-      assetBaseCompany: ['', Validators.required],
+      tms: ['', Validators.required],
+      isAssetBase: [false, Validators.required],
+      modesOfTransportation: ['', Validators.required],
+      industry: ['', Validators.required],
+      yearsInBusiness: [0, Validators.required],
     });
   }
 
@@ -94,21 +138,8 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm(): void {
-    if (this.registerForm.valid) {
-      const values = this.registerForm.value;
-      this.userService.signup(values).subscribe(
-        res => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Success',
-            detail: 'You are registered successfully',
-          });
-          this.router.navigate(['/auth/login']);
-        },
-        err => {
-        },
-      );
-    }
+    console.log(this.registerForm.getRawValue());
+    this.registerForm.patchValue({ customerId: user_id })
     if (this.registerForm.invalid) {
       return;
     }
@@ -120,7 +151,7 @@ export class RegisterComponent implements OnInit {
           summary: `you have logged in successfully`,
           life: 500,
         });
-        this.router.navigate(['/login']);
+        this.router.navigate(['/chat']);
 
       },
       error: (err) => {

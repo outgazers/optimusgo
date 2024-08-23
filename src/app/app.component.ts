@@ -9,7 +9,7 @@ import { AuthService } from './core/services/auth.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, ToastModule, NavBarComponent],
-  providers: [MessageService],
+  // providers: [MessageService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

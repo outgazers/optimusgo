@@ -25,67 +25,56 @@
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="locationAndCity"
+              <label
+                class="block text-sm mb-1 text-white"
+                for="locationStateAndCity"
                 >Location state and city:
               </label>
               <input
                 type="text"
                 pInputText
-                id="locationAndCity"
-                [attr.placeholder]="'locationAndCity'"
-                formControlName="locationAndCity"
+                id="locationStateAndCity"
+                [attr.placeholder]="'locationStateAndCity'"
+                formControlName="locationStateAndCity"
                 class="w-full border-gray-400 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="mcNumber"
+              <label class="block text-sm mb-1 text-white" for="mc"
                 >MC#:
               </label>
               <input
                 type="text"
                 pInputText
-                id="mcNumber"
-                [attr.placeholder]="'mcNumber'"
-                formControlName="mcNumber"
+                id="mc"
+                [attr.placeholder]="'mc'"
+                formControlName="mc"
                 class="w-full border-gray-400 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="name"
+              <label class="block text-sm mb-1 text-white" for="fullName"
                 >Name:
               </label>
               <input
                 type="text"
                 pInputText
-                id="name"
-                [attr.placeholder]="'name'"
-                formControlName="name"
+                id="fullName"
+                [attr.placeholder]="'fullName'"
+                formControlName="fullName"
                 class="w-full border-gray-400 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="email"
-                >Email address:
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="email"
-                [attr.placeholder]="'email'"
-                formControlName="email"
-                class="w-full border-gray-400 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="phone"
+              <label class="block text-sm mb-1 text-white" for="phoneNumber"
                 >Phone number:
               </label>
               <input
                 type="text"
                 pInputText
-                id="phone"
-                [attr.placeholder]="'phone'"
-                formControlName="phone"
+                id="phoneNumber"
+                [attr.placeholder]="'phoneNumber'"
+                formControlName="phoneNumber"
                 class="w-full border-gray-400 text-base text-black"
               />
             </div>
@@ -94,7 +83,7 @@
                 >Years in business:
               </label>
               <input
-                type="text"
+                type="number"
                 pInputText
                 id="yearsInBusiness"
                 [attr.placeholder]="'yearsInBusiness'"
@@ -108,7 +97,7 @@
                 for="modesOfTransportation"
                 >Modes of transportation:
               </label>
-              <p-dropdown
+              <p-multiSelect
                 class="w-full border-gray-400 text-base text-black"
                 formControlName="modesOfTransportation"
                 styleClass="w-full"
@@ -116,9 +105,8 @@
                 [placeholder]="'modesOfTransportation'"
                 appendTo="body"
                 [options]="modeOfTransportationOptions"
-                optionLabel="name"
-                optionValue="id"
-              ></p-dropdown>
+                [showHeader]="false"
+              ></p-multiSelect>
             </div>
             <div>
               <label class="block text-sm mb-1 text-white" for="industry"
@@ -160,17 +148,15 @@
               />
             </div>
             <div>
-              <label
-                class="block text-sm mb-1 text-white"
-                for="assetBaseCompany"
+              <label class="block text-sm mb-1 text-white" for="isAssetBase"
                 >Are you an asset based or non asset based company?
               </label>
               <input
                 type="text"
                 pInputText
-                id="assetBaseCompany"
-                [attr.placeholder]="'assetBaseCompany'"
-                formControlName="assetBaseCompany"
+                id="isAssetBase"
+                [attr.placeholder]="'isAssetBase'"
+                formControlName="isAssetBase"
                 class="w-full border-gray-400 text-base text-black"
               />
             </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,10 @@ export class CustomerService {
 
   registerProfile(formBody: any) {
     return this.http.post(`${this.baseURL}/customers/complete-profile`, formBody)
+  }
+
+  getProfile(): Observable<CustomerDetails> {
+    return this.http.get<CustomerDetails>(`${this.baseURL}/customers/me`)
   }
 }
 
@@ -30,3 +35,18 @@ export interface CompleteProfile {
   yearsInBusiness: number
 
 }
+
+export interface CustomerDetails {
+  id: string,
+  state: string,
+  username: string,
+  email: string,
+  createdAt: Date,
+  updatedAt: Date,
+  fullName: string,
+  nationalCode: string,
+  birthDate: Date,
+  address: string,
+  isVip: boolean
+}
+
