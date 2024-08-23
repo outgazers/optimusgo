@@ -19,20 +19,6 @@ import { CustomerService } from '../../core/services/customer.service';
 import { user_id } from '../../core/interceptors/token.interceptor';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-export interface registerForm {
-  customerId: FormControl<string | null>;
-  fullName: FormControl<string | null>;
-  companyName: FormControl<string | null>;
-  locationStateAndCity: FormControl<string | null>;
-  mc: FormControl<string | null>;
-  phoneNumber: FormControl<string | null>;
-  netTerms: FormControl<string | null>;
-  tms: FormControl<string | null>;
-  isAssetBase: FormControl<boolean | null>;
-  modesOfTransportation: FormControl<string | null>;
-  industry: FormControl<string | null>;
-  yearsInBusiness: FormControl<number | null>;
-}
 export enum ModsOfTransportation {
   AirFreight,
   Expedited,
@@ -62,12 +48,13 @@ export enum ModsOfTransportation {
     PasswordModule,
     ButtonModule,
     InputTextModule,
+    DropdownModule,
     MultiSelectModule],
 })
 export class RegisterComponent implements OnInit {
   userService = inject(UserService);
   customerService = inject(CustomerService);
-  public registerForm!: FormGroup<registerForm>;
+  public registerForm!: FormGroup;
   public version: string = '';
   public isLoading: boolean = false;
   modeOfTransportationOptions: string[] = [
@@ -119,14 +106,14 @@ export class RegisterComponent implements OnInit {
   private createForm() {
     this.registerForm = this.fb.group({
       customerId: ['', Validators.required],
-      fullName: ['', Validators.required],
+      fullName: ['', [Validators.required, Validators.minLength(3)]],
       companyName: ['', Validators.required],
       locationStateAndCity: ['', Validators.required],
       mc: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       netTerms: ['', Validators.required],
       tms: ['', Validators.required],
-      isAssetBase: [false, Validators.required],
+      isAssetBase: ['', Validators.required],
       modesOfTransportation: ['', Validators.required],
       industry: ['', Validators.required],
       yearsInBusiness: [0, Validators.required],

@@ -151,14 +151,19 @@
               <label class="block text-sm mb-1 text-white" for="isAssetBase"
                 >Are you an asset based or non asset based company?
               </label>
-              <input
-                type="text"
-                pInputText
-                id="isAssetBase"
-                [attr.placeholder]="'isAssetBase'"
-                formControlName="isAssetBase"
+
+              <p-dropdown
                 class="w-full border-gray-400 text-base text-black"
-              />
+                formControlName="isAssetBase"
+                styleClass="w-full"
+                [showClear]="true"
+                [placeholder]="'isAssetBase'"
+                appendTo="body"
+                [options]="[
+                  { label: 'Yes', value: true },
+                  { label: 'No', value: false }
+                ]"
+              ></p-dropdown>
             </div>
           </div>
           <div class="flex flex-col justify-center items-center w-full mt-4">
