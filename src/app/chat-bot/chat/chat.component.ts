@@ -57,8 +57,20 @@ export class ChatComponent {
           content: this.formGroup.value.message
         }
       );
+      this.conversation?.push(
+        {
+          id: this.conversation.length + 1,
+          role: res.role,
+          content: res.content
+        }
+      );
 
       this.formGroup.patchValue({ message: '' });
     })
+  }
+
+  sendLeadMessage() {
+    this.formGroup.patchValue({ message: 'Give me leads.' });
+    this.createMessage();
   }
 }

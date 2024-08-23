@@ -66,10 +66,10 @@ export class LoginComponent implements OnInit {
             detail: `you've logged in successfully`,
           });
           if (res.role !== 'admin') {
-            returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/status']);
+            returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/chat']);
             return;
           }
-          returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/status']);
+          returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/chat']);
           // });
         },
         error: (err) => {
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  public goToRegisterPage() {
-    this.router.navigate(['/register'])
+  public goToSignup() {
+    this.router.navigate(['/signup'])
   }
 }

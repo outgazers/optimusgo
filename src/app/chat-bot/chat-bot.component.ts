@@ -4,6 +4,7 @@ import { SideBarComponent } from "./side-bar/side-bar.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { Conversation } from '../core/models/chat-histories.model';
 import { ChatDataService } from '../core/services/chat-data.service';
+import { interval, map, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-chat-bot',
@@ -16,15 +17,26 @@ export class ChatBotComponent implements OnInit {
   chatService = inject(ChatDataService);
 
   conversations: Conversation[] = [];
+  pollingSubscription: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.chatService.getConversations().subscribe(res => {
-      this.conversations = res;
-    });
+    this.chatService.getConversations().subscribe((conversations) => {
+      this.conversations = conversations;
+    })
+    // this.pollingSubscription = interval(5000).pipe(
+    //   switchMap(() => this.chatService.getConversations())
+    // ).subscribe((conversations) => {
+    //   this.conversations = conversations;
+    // });
   }
 
   onConversationsUpdated(conversations: Conversation) {
     this.conversations.push(conversations);
   }
+
+  ngOnDestroy() {
+    this.pollingSubscription.unsubscribe();
+  }
+
 
 }

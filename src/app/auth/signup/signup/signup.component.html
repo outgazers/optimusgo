@@ -1,0 +1,70 @@
+<div class="max-h-screen overflow-hidden relative">
+  <div class="background-gradient w-full h-screen"></div>
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div class="p-8 rounded-2xl w-[960px] h-[768px] login-card-gradient">
+      <div class="">
+        <div class="text-xl font-medium text-white mb-8">Sign Up</div>
+        <form
+          [formGroup]="signupForm"
+          (ngSubmit)="signup()"
+          #formGroupDir="ngForm"
+          class="mb-14"
+        >
+          <div class="grid grid-cols-2 gap-4 custom-scrollbar overflow-y-auto">
+            <div>
+              <label class="block text-sm mb-1 text-white" for="username"
+                >Username:
+              </label>
+              <input
+                type="text"
+                pInputText
+                id="username"
+                [attr.placeholder]="'username'"
+                formControlName="username"
+                class="w-full border-gray-400 text-base text-black"
+              />
+            </div>
+            <div>
+              <label class="block text-sm mb-1 text-white" for="email"
+                >Email:
+              </label>
+              <input
+                type="text"
+                pInputText
+                id="email"
+                [attr.placeholder]="'email'"
+                formControlName="email"
+                class="w-full border-gray-400 text-base text-black"
+              />
+            </div>
+            <div>
+              <label class="block text-sm mb-1 text-white" for="password"
+                >Password:
+              </label>
+              <input
+                type="password"
+                pInputText
+                id="password"
+                [attr.placeholder]="'password'"
+                formControlName="password"
+                class="w-full border-gray-400 text-base text-black"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col justify-center items-center w-full mt-4">
+            <p-button
+              class="w-full mb-4"
+              type="submit"
+              styleClass="w-full"
+              label="Sign Up"
+            ></p-button>
+          </div>
+        </form>
+        <div class="text-center text-sm font-normal text-white">
+          <div class="mb-1">2024 - OptimusGO</div>
+          <div>{{ version }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

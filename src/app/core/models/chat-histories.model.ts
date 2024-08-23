@@ -1,6 +1,6 @@
 // import { ChatHistoryDetails } from './chat-history-details.model';
 
-import { Message } from "./chat-history-details.model";
+import { Message, role } from "./chat-history-details.model";
 
 
 // export default interface ChatHistories {
@@ -11,4 +11,10 @@ import { Message } from "./chat-history-details.model";
 export interface Conversation {
   id: number;
   messages: Message[];
+}
+
+export interface ChatResponse {
+
+  role: role;
+  content: string
 }

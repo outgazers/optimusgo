@@ -49,7 +49,7 @@ export interface registerForm {
 export class RegisterComponent implements OnInit {
   userService = inject(UserService);
   customerService = inject(CustomerService);
-  public signupForm!: FormGroup<registerForm>;
+  public registerForm!: FormGroup<registerForm>;
   public version: string = '';
   public isLoading: boolean = false;
   modeOfTransportationOptions: { name: string; id: number }[] = [
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private createForm() {
-    this.signupForm = this.fb.group({
+    this.registerForm = this.fb.group({
       companyName: ['', Validators.required],
       locationAndCity: ['', Validators.required],
       name: ['', Validators.required],
@@ -94,8 +94,8 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm(): void {
-    if (this.signupForm.valid) {
-      const values = this.signupForm.value;
+    if (this.registerForm.valid) {
+      const values = this.registerForm.value;
       this.userService.signup(values).subscribe(
         res => {
           this.messageService.add({
@@ -109,11 +109,10 @@ export class RegisterComponent implements OnInit {
         },
       );
     }
-    console.log(this.signupForm.getRawValue());
-    if (this.signupForm.invalid) {
+    if (this.registerForm.invalid) {
       return;
     }
-    const form = this.signupForm.getRawValue();
+    const form = this.registerForm.getRawValue();
     this.customerService.registerProfile(form).subscribe({
       next: (res: any) => {
         this.messageService.add({
