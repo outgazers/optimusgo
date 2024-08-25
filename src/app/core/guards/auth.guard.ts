@@ -17,26 +17,8 @@ export class AuthGuard {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean | UrlTree {
-    let loggedIn = this.authService.isLogin;
-
-    if (loggedIn) {
-      this.customerService.getProfile().subscribe({
-        next: (profile: CustomerDetails) => {
-          if (profile.state !== 'Valid') {
-            this.router.navigate(['/register']);
-          }
-        }, error: (err) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: err.error.message,
-          });
-          this.router.navigate(['/login']);
-          return false
-        },
-      })
+    if (this.authService.isLogin) {
       return true;
-
     } else {
       return this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     }

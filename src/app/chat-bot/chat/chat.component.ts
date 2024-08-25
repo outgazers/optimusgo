@@ -1,12 +1,13 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ButtonModule } from "primeng/button";
 import { BubbleMessageComponent, messageTypeEnum } from './bubble-message/bubble-message.component';
 import { Conversation } from '../../core/models/chat-histories.model';
 import { Message } from '../../core/models/chat-history-details.model';
 import { ChatDataService } from '../../core/services/chat-data.service';
+import { SpinnerModule } from 'primeng/spinner';
 
 @Component({
   selector: 'app-chat',
@@ -17,6 +18,7 @@ import { ChatDataService } from '../../core/services/chat-data.service';
     ReactiveFormsModule,
     ButtonModule,
     BubbleMessageComponent,
+    SpinnerModule
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
@@ -25,18 +27,22 @@ export class ChatComponent {
   chatService = inject(ChatDataService);
   fb = inject(FormBuilder);
   route = inject(ActivatedRoute);
+  router = inject(Router);
+
+  newConversationCreated = output<Conversation>();
 
   public formGroup!: FormGroup;
   messageType = messageTypeEnum;
   conversations = input.required<Conversation[]>();
   conversationId: number = 0;
-  conversation: Message[] | undefined;
+  conversation: Message[] = [];
+  chatSendLoading = false;
 
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
-      this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages;
+      this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages ?? [];
     });
     this.createForm();
   }
@@ -49,7 +55,26 @@ export class ChatComponent {
   }
 
   createMessage() {
+    if (this.chatSendLoading) return;
+
+    this.formGroup.controls['message'].disable();
+    this.chatSendLoading = true;
+    if (this.conversationId == 0) {
+      this.chatService.createConversation().subscribe((res) => {
+        this.conversationId = res.id;
+        this.router.navigate([], { queryParams: { id: this.conversationId } });
+        this.sendMessage();
+        this.newConversationCreated.emit(res);
+      })
+    } else {
+      this.sendMessage()
+    }
+  }
+
+  sendMessage() {
     this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe((res) => {
+      this.chatSendLoading = false;
+      this.formGroup.controls['message'].enable();
       this.conversation?.push(
         {
           id: this.conversation.length + 1,
@@ -66,6 +91,12 @@ export class ChatComponent {
       );
 
       this.formGroup.patchValue({ message: '' });
+
+      const chatContainer = document.getElementById('chat-container') as HTMLDivElement;
+      setTimeout(() => {
+        chatContainer.style.scrollBehavior = 'smooth';
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 100);
     })
   }
 

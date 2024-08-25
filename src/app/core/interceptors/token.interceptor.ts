@@ -5,8 +5,6 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { LocalStorageService } from '../services/local-storage.service';
 
-export const user_id = 'fe612cbd-9646-4b08-b2cb-bf5676b4fe2d';
-
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   authService = inject(AuthService);

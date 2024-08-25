@@ -1,4 +1,4 @@
-import { inject, Injectable, runInInjectionContext } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, pipe, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 // import { Login } from '../models/login.model';
@@ -21,33 +21,32 @@ export class AuthModel {
 })
 export class AuthService {
   private userInfoSource: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  public userInfo$: Observable<any> = this.userInfoSource.asObservable();
+  userInfo$: Observable<any> = this.userInfoSource.asObservable();
 
-  public get userInfo() {
+  get userInfo() {
     return this.userInfoSource.getValue();
   }
 
   private tokenSource: BehaviorSubject<any> = new BehaviorSubject(null);
-  public token$: Observable<any> = this.tokenSource.asObservable();
-
-  public get token() {
+  token$: Observable<any> = this.tokenSource?.asObservable();
+  get token() {
     return this.tokenSource.getValue();
   }
 
-  public isLoginSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLogin$ = this.isLoginSource.asObservable();
-
-  public get isLogin() {
+  isLoginSource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLogin$ = this.isLoginSource.asObservable();
+  get isLogin() {
     return this.isLoginSource.getValue();
   }
-  public _logout: Subject<boolean> = new Subject();
-  public logout$: Observable<boolean> = this._logout.asObservable();
+
+  _logout: Subject<boolean> = new Subject();
+  logout$: Observable<boolean> = this._logout.asObservable();
 
   localStorage = inject(LocalStorageService);
   router = inject(Router);
   // constructor(private router: Router, private localStorage: LocalStorageService) {}
 
-  public initial() {
+  initial() {
     const token = this.localStorage.read('token')?.toString();
     // const _ = atob(userData.toString());
     // const userInfo = JSON.parse(_);
@@ -69,7 +68,7 @@ export class AuthService {
     }
   }
 
-  public logout() {
+  logout() {
     this.localStorage.delete('token');
     this.localStorage.delete('refreshToken');
     this.localStorage.delete('userData');
@@ -79,7 +78,7 @@ export class AuthService {
     // this.router.navigate(['/login']);
   }
 
-  public setUserToken(user: any) {
+  setUserToken(user: any) {
     if (!!user.accessToken) {
       this.tokenSource.next(user.accessToken);
       this.localStorage.save('token', user.accessToken);
@@ -88,7 +87,7 @@ export class AuthService {
     }
   }
 
-  public setUserInfoData(value: any) {
+  setUserInfoData(value: any) {
     const userDataJsonStr = JSON.stringify(value);
     const userDataJsonBase64 = btoa(userDataJsonStr.toString());
     this.localStorage.save('userData', userDataJsonBase64);
@@ -99,12 +98,12 @@ export class AuthService {
     return Math.floor(new Date().getTime() / 1000) >= expiry;
   }
 
-  // public setJwtToken(token, cui) {
+  // setJwtToken(token, cui) {
   //   this.tokenSource.next(token);
   //   this.cui = cui;
   // }
 
-  // public checkToken() {
+  // checkToken() {
   //   const url = `/versions`;
   //   return this.restClientService.get(url, true, true).pipe(catchError(err => of(`${err}`)));
   // }

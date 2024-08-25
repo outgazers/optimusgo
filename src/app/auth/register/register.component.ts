@@ -16,8 +16,8 @@ import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { UserService } from '../../core/services/user.service';
 import { CustomerService } from '../../core/services/customer.service';
-import { user_id } from '../../core/interceptors/token.interceptor';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { AuthService } from '../../core/services/auth.service';
 
 export enum ModsOfTransportation {
   AirFreight,
@@ -52,11 +52,16 @@ export enum ModsOfTransportation {
     MultiSelectModule],
 })
 export class RegisterComponent implements OnInit {
+  fb = inject(FormBuilder);
+  router = inject(Router);
+  messageService = inject(MessageService);
   userService = inject(UserService);
+  authService = inject(AuthService);
+
   customerService = inject(CustomerService);
-  public registerForm!: FormGroup;
-  public version: string = '';
-  public isLoading: boolean = false;
+  registerForm!: FormGroup;
+  version: string = '';
+  isLoading: boolean = false;
   modeOfTransportationOptions: string[] = [
     'AirFreight',
     'Expedited',
@@ -92,12 +97,6 @@ export class RegisterComponent implements OnInit {
   // }
 
 
-  constructor(
-    private readonly router: Router,
-    private readonly fb: FormBuilder,
-    private readonly messageService: MessageService
-  ) { }
-
   ngOnInit(): void {
     this.createForm();
     this.version = environment.version;
@@ -125,8 +124,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm(): void {
-    console.log(this.registerForm.getRawValue());
-    this.registerForm.patchValue({ customerId: user_id })
     if (this.registerForm.invalid) {
       return;
     }

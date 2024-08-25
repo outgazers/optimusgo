@@ -1,5 +1,8 @@
 <div class="bg-[#212121] flex flex-col max-h-full min-h-full justify-between">
-  <div class="overflow-y-auto overflow-x-hidden px-2 flex flex-col gap-3 py-2">
+  <div
+    class="overflow-y-auto overflow-x-hidden px-2 flex flex-col gap-3 py-2 grow"
+    id="chat-container"
+  >
     @for(messages of conversation; track $index){
     <app-bubble-message
       [type]="messages.role"
@@ -8,6 +11,13 @@
     }
   </div>
 
+  <button
+    class="w-fit p-1 m-1 rounded-md bg-gray-300 cursor-pointer"
+    type="button"
+    (click)="sendLeadMessage()"
+  >
+    Give me leads
+  </button>
   <div class="control bg-gray-200 h-16">
     <form
       [formGroup]="formGroup"
@@ -15,7 +25,6 @@
       #formGroupDir="ngForm"
       class="flex justify-between items-center p-2"
     >
-      <button type="button" (click)="sendLeadMessage()">Give me leads</button>
       <input
         autocomplete="off"
         type="text"
@@ -25,8 +34,22 @@
         formControlName="message"
         class="border-none text-base text-black bg-gray-200 flex-grow"
       />
+      <div></div>
 
-      <p-button type="submit" severity="secondary" icon="pi pi-send"></p-button>
+      <p-button
+        styleClass="p-3"
+        type="submit"
+        severity="secondary"
+        [disabled]="chatSendLoading"
+      >
+        @if (chatSendLoading) {
+        <svg viewBox="25 25 50 50">
+          <circle r="20" cy="50" cx="50"></circle>
+        </svg>
+        } @else {
+        <i class="pi pi-send"></i>
+        }
+      </p-button>
     </form>
   </div>
 </div>

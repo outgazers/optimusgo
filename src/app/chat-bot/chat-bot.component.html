@@ -5,6 +5,10 @@
     (conversationsUpdated)="onConversationsUpdated($event)"
     class="w-[40%]"
   ></app-side-bar>
-  <app-chat [conversations]="conversations" class="w-full"></app-chat>
+  <app-chat
+    [conversations]="conversations"
+    (newConversationCreated)="onConversationsUpdated($event)"
+    class="w-full"
+  ></app-chat>
   }
 </section>

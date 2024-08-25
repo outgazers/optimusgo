@@ -1,11 +1,8 @@
-// import { ChatCompletionMessage } from 'openai/resources';
-// import { ChatHistoryDetails } from '../shared/models/chat-history-details.model';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ChatResponse, Conversation } from '../models/chat-histories.model';
 import { environment } from '../../../../environments/environment';
-import { user_id } from '../interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root',
@@ -13,19 +10,16 @@ import { user_id } from '../interceptors/token.interceptor';
 export class ChatDataService {
   totalChatConversation: number = 0;
   http = inject(HttpClient);
-
-
-  constructor() { }
   getConversations(): Observable<Conversation[]> {
-    return this.http.get<Conversation[]>(`${environment.gatewayUrl}/chat/conversations?user-id=${user_id}`);
+    return this.http.get<Conversation[]>(`${environment.gatewayUrl}/chat/conversations`);
   }
 
   createConversation(): Observable<Conversation> {
-    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations`, { 'user-id': user_id });
+    return this.http.post<Conversation>(`${environment.gatewayUrl}/chat/conversations`, {});
   }
 
   createMessage(conversationId: number, message: string): Observable<ChatResponse> {
-    return this.http.post<ChatResponse>(`${environment.gatewayUrl}/chat/conversations/${conversationId}/messages`, { 'input': message, 'user-id': user_id });
+    return this.http.post<ChatResponse>(`${environment.gatewayUrl}/chat/conversations/${conversationId}/messages`, { 'input': message });
   }
 
   // public setLocalStorageForAllChat(chatHistory: ChatHistoryDetails): void {

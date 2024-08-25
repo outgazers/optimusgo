@@ -14,12 +14,10 @@ import { InputTextModule } from "primeng/inputtext";
 import { MessageService } from "primeng/api";
 import { UserService } from '../../core/services/user.service';
 import { AuthService } from '../../core/services/auth.service';
-import { CustomerDetails, CustomerService } from '../../core/services/customer.service';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, PasswordModule, ButtonModule, InputTextModule],
-  providers: [MessageService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -30,7 +28,6 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
   fb = inject(FormBuilder);
   messageService = inject(MessageService);
-  customerService = inject(CustomerService);
 
   loginForm: FormGroup = this.fb.group({
     email: ['', [Validators.email, Validators.required]],
@@ -59,9 +56,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(loginValues).subscribe(
       {
         next: (res: any) => {
-
           this.authService.setUserToken(res);
-          // this.customerService.getMyInfo().subscribe(myInfo => {
           // this.authService.setUserInfoData(myInfo);
           this.messageService.add({
             severity: 'success',
@@ -69,14 +64,7 @@ export class LoginComponent implements OnInit {
             detail: `you've logged in successfully`,
           });
 
-          // this.customerService.getProfile().subscribe((profile: CustomerDetails) => {
-          //   if (profile.state === 'valid') {
           returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/chat']);
-          //   } else {
-          //     this.router.navigate(['/register']);
-          //   }
-          // })
-
           // if (res.role !== 'admin') {
           //   returnUrl ? this.router.navigateByUrl(returnUrl) : this.router.navigate(['/chat']);
           //   return;
@@ -87,7 +75,7 @@ export class LoginComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: err.error.message,
+            detail: err.error.reason,
           });
         },
       }

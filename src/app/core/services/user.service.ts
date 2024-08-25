@@ -9,8 +9,6 @@ export class UserService {
   baseURL = environment.gatewayUrl;
   http = inject(HttpClient);
 
-  constructor() { }
-
   signup(user: any) {
     return this.http.post(this.baseURL + '/identity/sign-up', user);
   }

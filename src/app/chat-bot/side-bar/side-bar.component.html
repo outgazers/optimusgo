@@ -1,5 +1,8 @@
 <aside class="bg-gray-100 flex flex-col h-full flex-shrink-0 overflow-x-hidden">
-  <nav class="bg-transparent p-4 flex flex-col flex-1 overflow-y-auto gap-1">
+  <nav
+    id="conversations-container"
+    class="bg-transparent p-4 flex flex-col flex-1 overflow-y-auto gap-1"
+  >
     <strong class="pb-2">Chat history: </strong>
     @for (item of conversations(); track $index) {
     <div
@@ -7,7 +10,9 @@
       class="chatItem rounded-lg border-solid border border-black p-2 h-fit mb-2 last:mb-0 hover:bg-gray-300 hover:cursor-pointer transition delay-150 duration-300 ease-in-out flex justify-start items-center"
     >
       <span class="title text-sm">{{
-        item.messages[item.messages.length - 1]?.content ?? "Empty"
+        item.messages.length && item.messages[item.messages.length - 1].content
+          ? item.messages[item.messages.length - 1].content
+          : "No messages yet"
       }}</span>
     </div>
     }
