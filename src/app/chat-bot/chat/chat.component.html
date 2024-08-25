@@ -11,13 +11,21 @@
     }
   </div>
 
-  <button
+  <p-button
+    class="w-fit p-1 m-1 rounded-md"
+    label="Give me leads"
+    severity="secondary"
+    type="button"
+    (click)="sendLeadMessage()"
+  ></p-button>
+
+  <!-- <button
     class="w-fit p-1 m-1 rounded-md bg-gray-300 cursor-pointer"
     type="button"
     (click)="sendLeadMessage()"
   >
     Give me leads
-  </button>
+  </button> -->
   <div class="control bg-gray-200 h-16">
     <form
       [formGroup]="formGroup"

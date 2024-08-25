@@ -43,8 +43,17 @@ export class ChatComponent {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
       this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages ?? [];
+      this.scrollToBottom();
+
     });
     this.createForm();
+  }
+
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
+    this.scrollToBottom();
   }
 
 
@@ -92,12 +101,16 @@ export class ChatComponent {
 
       this.formGroup.patchValue({ message: '' });
 
-      const chatContainer = document.getElementById('chat-container') as HTMLDivElement;
-      setTimeout(() => {
-        chatContainer.style.scrollBehavior = 'smooth';
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-      }, 100);
     })
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+      const chatContainer = document.getElementById('chat-container');
+      if (chatContainer) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }, 100);
   }
 
   sendLeadMessage() {

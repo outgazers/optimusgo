@@ -18,6 +18,21 @@ export class AuthGuard {
     state: RouterStateSnapshot,
   ): Observable<boolean> | Promise<boolean> | boolean | UrlTree {
     if (this.authService.isLogin) {
+      this.customerService.getProfile().subscribe({
+        next: (profile: CustomerDetails) => {
+          if (profile.state !== 'Valid') {
+            this.router.navigate(['/register']);
+          }
+        }, error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error.message,
+          });
+          this.router.navigate(['/login']);
+          return false
+        },
+      })
       return true;
     } else {
       return this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
