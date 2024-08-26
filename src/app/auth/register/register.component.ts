@@ -123,6 +123,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public submitForm(): void {
+    this.isLoading = true;
     if (this.registerForm.invalid) {
       return;
     }
@@ -134,10 +135,17 @@ export class RegisterComponent implements OnInit {
           summary: `you have logged in successfully`,
           life: 500,
         });
-        this.router.navigate(['/chat']);
+        setTimeout(() => {
+
+          this.router.navigate(['/chat']);
+          this.isLoading = false;
+
+        }, 3000);
 
       },
       error: (err) => {
+        this.isLoading = false;
+
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

@@ -171,8 +171,9 @@
               class="w-full mb-4"
               type="submit"
               styleClass="w-full"
-              label="Register"
-            ></p-button>
+              [disabled]="isLoading"
+              >{{ isLoading ? "Registering..." : "Register" }}</p-button
+            >
             <p-button
               class="w-full"
               severity="secondary"

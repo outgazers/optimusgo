@@ -6,7 +6,11 @@
     <div class="text-black font-semibold text-lg ml-2">OPTIMUSGO</div>
   </nav>
 
-  <nav href="https://crm.optimusgo.ai/" target="_blank">
-    <p-button label="Go to CRM" severity="secondary"></p-button>
+  <nav target="_blank">
+    <p-button
+      label="Go to CRM"
+      (onClick)="goToCRM()"
+      severity="secondary"
+    ></p-button>
   </nav>
 </header>

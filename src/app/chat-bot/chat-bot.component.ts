@@ -14,12 +14,18 @@ import { ChatDataService } from '../core/services/chat-data.service';
 })
 export class ChatBotComponent implements OnInit {
   chatService = inject(ChatDataService);
-
   conversations: Conversation[] = [];
+  loading = false;
 
   ngOnInit(): void {
+    this.getConversations();
+  }
+
+  getConversations() {
+    this.loading = true;
     this.chatService.getConversations().subscribe((conversations) => {
       this.conversations = conversations;
+      this.loading = false;
     })
   }
 

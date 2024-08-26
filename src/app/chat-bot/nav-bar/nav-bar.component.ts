@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {ButtonModule} from "primeng/button";
+import { ButtonModule } from "primeng/button";
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,5 +10,7 @@ import {ButtonModule} from "primeng/button";
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-
+  goToCRM() {
+    window.open(environment.crmUrl, '_blank');
+  }
 }

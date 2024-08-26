@@ -42,6 +42,7 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
+      console.log(this.conversations());
       this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages ?? [];
       this.scrollToBottom();
 
@@ -84,6 +85,8 @@ export class ChatComponent {
     this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe((res) => {
       this.chatSendLoading = false;
       this.formGroup.controls['message'].enable();
+      document.getElementById('message')?.focus();
+
       this.conversation?.push(
         {
           id: this.conversation.length + 1,

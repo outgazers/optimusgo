@@ -1,5 +1,5 @@
 <section class="flex flex-row mt-[96px]" style="height: calc(100% - 96px)">
-  <!-- @if (conversations.length) { -->
+  @if (!loading) {
   <app-side-bar
     [conversations]="conversations"
     (conversationsUpdated)="onConversationsUpdated($event)"
@@ -10,5 +10,6 @@
     (newConversationCreated)="onConversationsUpdated($event)"
     class="w-full"
   ></app-chat>
-  <!-- } -->
+
+  }
 </section>

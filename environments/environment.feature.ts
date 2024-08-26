@@ -4,4 +4,5 @@ export const environment = {
   name: 'newFeature',
   appName: 'Optimusgo',
   gatewayUrl: 'https://gateway.optimusgo.ai',
+  crmUrl: 'https://crm.optimusgo.ai/',
 }
