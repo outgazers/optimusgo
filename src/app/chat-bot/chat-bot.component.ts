@@ -23,9 +23,14 @@ export class ChatBotComponent implements OnInit {
 
   getConversations() {
     this.loading = true;
-    this.chatService.getConversations().subscribe((conversations) => {
-      this.conversations = conversations;
-      this.loading = false;
+    this.chatService.getConversations().subscribe({
+      next: (conversations) => {
+        this.conversations = conversations;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      }
     })
   }
 

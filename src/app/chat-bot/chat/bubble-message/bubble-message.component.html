@@ -11,6 +11,19 @@
       type() === 'human' ? 'bg-white text-black' : 'bg-black text-white'
     "
   >
-    {{ content() }}
+    @if (isJSON) {
+    <table class="max-w-[40rem] overflow-x-auto block">
+      <thead>
+        <tr>
+          <th *ngFor="let header of tableHeaders">{{ header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td *ngFor="let header of tableHeaders">{{ company[header] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    } @else { {{ content() }} }
   </div>
 </div>

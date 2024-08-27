@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -42,7 +42,6 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
-      console.log(this.conversations());
       this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages ?? [];
       this.scrollToBottom();
 
@@ -69,12 +68,18 @@ export class ChatComponent {
 
     this.formGroup.controls['message'].disable();
     this.chatSendLoading = true;
-    if (this.conversationId == 0) {
-      this.chatService.createConversation().subscribe((res) => {
-        this.conversationId = res.id;
-        this.router.navigate([], { queryParams: { id: this.conversationId } });
-        this.sendMessage();
-        this.newConversationCreated.emit(res);
+    if (this.conversationId === 0) {
+      this.chatService.createConversation().subscribe({
+        next: (res) => {
+          this.conversationId = res.id;
+          this.router.navigate([], { queryParams: { id: this.conversationId } });
+          this.sendMessage();
+          this.newConversationCreated.emit(res);
+          this.chatSendLoading = false;
+        },
+        error: () => {
+          this.chatSendLoading = false;
+        }
       })
     } else {
       this.sendMessage()
@@ -117,7 +122,7 @@ export class ChatComponent {
   }
 
   sendLeadMessage() {
-    this.formGroup.patchValue({ message: 'Give me leads.' });
+    this.formGroup.patchValue({ message: 'Give me leads' });
     this.createMessage();
   }
 }
