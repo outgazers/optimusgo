@@ -72,10 +72,16 @@ export class AuthService {
     this.localStorage.delete('token');
     this.localStorage.delete('refreshToken');
     this.localStorage.delete('userData');
+    localStorage.clear();
     this.tokenSource.next(null);
     this.isLoginSource.next(false);
     this._logout.next(true);
-    // this.router.navigate(['/login']);
+    const _returnUrl = this.router.url;
+    const notAllowed = ['forget-password', 'login', 'signup', 'signon', 'signIn'];
+
+    if (notAllowed.some((x) => _returnUrl.includes(x)) || _returnUrl === '/') return;
+
+    this.router.navigate(['/login'], { queryParams: { returnUrl: _returnUrl } });
   }
 
   setUserToken(user: any) {

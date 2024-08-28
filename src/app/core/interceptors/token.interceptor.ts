@@ -23,6 +23,10 @@ export class TokenInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error) => {
         switch (error.status) {
+          case 401:
+            this.authService.logout();
+            throw new Error(error);
+            break;
           default:
             throw error;
         }
