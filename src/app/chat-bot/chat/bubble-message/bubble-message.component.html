@@ -12,15 +12,15 @@
     "
   >
     @if (isJSON) {
-    <table class="max-w-[40rem] overflow-x-auto block">
+    <table class="max-w-[40rem] overflow-x-auto block table-auto w-full border-collapse">
       <thead>
         <tr>
-          <th *ngFor="let header of tableHeaders">{{ header }}</th>
+          <th *ngFor="let header of tableHeaders" style="border: 1px solid;" class="border-white p-2">{{ header }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let company of companies">
-          <td *ngFor="let header of tableHeaders">{{ company[header] }}</td>
+          <td style="border: 1px solid;" class="border-white p-2" *ngFor="let header of tableHeaders">{{ company[header] }}</td>
         </tr>
       </tbody>
     </table>
