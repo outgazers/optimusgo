@@ -108,6 +108,7 @@ export class ChatComponent {
       );
 
       this.formGroup.patchValue({ message: '' });
+      this.scrollToBottom();
 
     })
   }
@@ -116,6 +117,7 @@ export class ChatComponent {
     setTimeout(() => {
       const chatContainer = document.getElementById('chat-container');
       if (chatContainer) {
+        chatContainer.style.scrollBehavior = "smooth";
         chatContainer.scrollTop = chatContainer.scrollHeight;
       }
     }, 100);
