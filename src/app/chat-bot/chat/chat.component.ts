@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InputTextModule } from "primeng/inputtext";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -42,9 +42,6 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
-      this.conversation = this.conversations().find(conversation => conversation.id === this.conversationId)?.messages ?? [];
-      this.scrollToBottom();
-
     });
     this.createForm();
   }
@@ -55,6 +52,14 @@ export class ChatComponent {
 
     this.scrollToBottom();
   }
+
+  private conversationUpdate = effect(() => {
+    const conversations = this.conversations();
+    if (conversations) {
+      this.conversation = conversations.find(conversation => conversation.id === this.conversationId)?.messages ?? [];
+      this.scrollToBottom();
+    }
+  })
 
 
   private createForm() {

@@ -1,14 +1,14 @@
 <section class="flex flex-row mt-[96px]" style="height: calc(100% - 96px)">
-  @if (!loading) {
+  <!-- @if (!loading) { -->
   <app-side-bar
     [conversations]="conversations"
-    (conversationsUpdated)="onConversationsUpdated($event)"
+    (conversationsUpdated)="onConversationsUpdated()"
     class="w-[40%]"
   ></app-side-bar>
   <app-chat
     [conversations]="conversations"
-    (newConversationCreated)="onConversationsUpdated($event)"
+    (newConversationCreated)="onConversationsUpdated()"
     class="w-full"
   ></app-chat>
-  }
+  <!-- } -->
 </section>

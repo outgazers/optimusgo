@@ -34,7 +34,7 @@ export class ChatBotComponent implements OnInit {
     })
   }
 
-  onConversationsUpdated(conversation: Conversation) {
-    this.conversations = [...this.conversations, conversation];
+  onConversationsUpdated() {
+    this.getConversations();
   }
 }

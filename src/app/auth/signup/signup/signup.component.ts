@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
   messageService = inject(MessageService);
   router = inject(Router);
   version: string = '';
-
+  isSignUpLoading: boolean = false;
 
   ngOnInit(): void {
     this.createForm();
@@ -51,6 +51,8 @@ export class SignupComponent implements OnInit {
 
   signup() {
     if (this.signupForm.valid) {
+      this.isSignUpLoading = true;
+      this.signupForm.disable();
       const values = this.signupForm.value;
       this.userService.signup(values).subscribe({
         next: (res: any) => {
@@ -59,9 +61,13 @@ export class SignupComponent implements OnInit {
             summary: 'Success',
             detail: 'You are registered successfully',
           });
+          this.signupForm.enable();
+          this.isSignUpLoading = false;
           this.router.navigate(['/login']);
         },
         error: (err: any) => {
+          this.signupForm.enable();
+          this.isSignUpLoading = false;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

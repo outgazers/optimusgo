@@ -1,7 +1,7 @@
-import { Component, effect, inject, Input, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { ButtonModule } from "primeng/button";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { Conversation } from '../../core/models/chat-histories.model';
 import { ChatDataService } from '../../core/services/chat-data.service';
 
@@ -16,7 +16,7 @@ export class SideBarComponent {
   router = inject(Router);
   chatService = inject(ChatDataService);
   conversations = input.required<Conversation[]>();
-  conversationsUpdated = output<Conversation>();
+  conversationsUpdated = output<true>();
   version = environment.version;
 
   // TODO: mark the selected conversation as active
@@ -28,16 +28,17 @@ export class SideBarComponent {
   scrollToBottom() {
     const conversationsContainerRef = document.getElementById('conversations-container') as HTMLDivElement;
     conversationsContainerRef.scrollTop = conversationsContainerRef.scrollHeight;
+    conversationsContainerRef.style.scrollBehavior = "smooth";
   }
 
   goToConversation(convId: number) {
     this.router.navigate(['/chat'], { queryParams: { id: convId } });
-    // router navigate to /chat?id=convId
+    this.conversationsUpdated.emit(true);
   }
 
   createConversation() {
     this.chatService.createConversation().subscribe((res) => {
-      this.conversationsUpdated.emit(res);
+      this.conversationsUpdated.emit(true);
       this.router.navigate(['/chat'], { queryParams: { id: res.id } });
     })
   }
