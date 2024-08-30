@@ -47,9 +47,6 @@ export class ChatComponent {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-
     this.scrollToBottom();
   }
 
@@ -58,6 +55,7 @@ export class ChatComponent {
     if (conversations) {
       this.conversation = conversations.find(conversation => conversation.id === this.conversationId)?.messages ?? [];
       this.scrollToBottom();
+      document.getElementById('message')?.focus();
     }
   })
 
@@ -92,29 +90,34 @@ export class ChatComponent {
   }
 
   sendMessage() {
-    this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe((res) => {
-      this.chatSendLoading = false;
-      this.formGroup.controls['message'].enable();
-      document.getElementById('message')?.focus();
+    this.chatService.createMessage(this.conversationId, this.formGroup.value.message).subscribe({
+      next: (res) => {
+        this.chatSendLoading = false;
+        this.formGroup.controls['message'].enable();
+        document.getElementById('message')?.focus();
 
-      this.conversation?.push(
-        {
-          id: this.conversation.length + 1,
-          role: 'human',
-          content: this.formGroup.value.message
-        }
-      );
-      this.conversation?.push(
-        {
-          id: this.conversation.length + 1,
-          role: res.role,
-          content: res.content
-        }
-      );
+        this.conversation?.push(
+          {
+            id: this.conversation.length + 1,
+            role: 'human',
+            content: this.formGroup.value.message
+          }
+        );
+        this.conversation?.push(
+          {
+            id: this.conversation.length + 1,
+            role: res.role,
+            content: res.content
+          }
+        );
 
-      this.formGroup.patchValue({ message: '' });
-      this.scrollToBottom();
-
+        this.formGroup.patchValue({ message: '' });
+        this.scrollToBottom();
+      },
+      error: () => {
+        this.chatSendLoading = false;
+        throw new Error('Something went wrong');
+      }
     })
   }
 

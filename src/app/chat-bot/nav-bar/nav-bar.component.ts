@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonModule } from "primeng/button";
-import { environment } from '../../../../environments/environment';
+import { UserService } from '../../core/services/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,7 +11,24 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
+  userService = inject(UserService);
+  messageService = inject(MessageService);
+
   goToCRM() {
-    window.open(environment.crmUrl, '_blank');
+    this.userService.getCrmLoginUrl().subscribe(
+      {
+        next: (url: string) => {
+          window.open(url, '_blank');
+        },
+        error: (err: any) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error.reason,
+          });
+        }
+      }
+    );
   }
+
 }
