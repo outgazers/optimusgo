@@ -1,13 +1,19 @@
 <header
   class="w-full bg-[#BBBBBB] shadow-1 flex justify-between items-center pr-4"
 >
-  <nav class="logo h-24 flex justify-center items-center">
-    <img class="h-full" src="Optimus.jpg" alt="" />
-    <div class="text-black font-semibold text-lg ml-2">OPTIMUSGO</div>
+  <div></div>
+  <nav
+    class="logo h-24 max-lg:h-20 max-md:h-16 flex justify-center items-center"
+  >
+    <img class="h-full max-lg:hidden" src="Optimus.jpg" alt="" />
+    <div class="text-black font-semibold text-lg ml-2 max-md:text-sm">
+      OPTIMUSGO
+    </div>
   </nav>
 
   <nav target="_blank">
     <p-button
+      styleClass="max-lg:p-3 max-md:p-2 max-md:text-xs max-md:text-sm"
       label="Go to CRM"
       (onClick)="goToCRM()"
       severity="secondary"

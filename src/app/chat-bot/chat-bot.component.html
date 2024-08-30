@@ -1,5 +1,6 @@
-<section class="flex flex-row mt-[96px]" style="height: calc(100% - 96px)">
-  <!-- @if (!loading) { -->
+<section
+  class="flex flex-row mt-[96px] max-lg:mt-[80px] max-md:mt-[64px] h-[calc(100svh-96px)] max-lg:h-[calc(100svh-80px)] max-md:h-[calc(100svh-64px)]"
+>
   <app-side-bar
     [conversations]="conversations"
     (conversationsUpdated)="onConversationsUpdated()"
@@ -10,5 +11,4 @@
     (newConversationCreated)="onConversationsUpdated()"
     class="w-full"
   ></app-chat>
-  <!-- } -->
 </section>

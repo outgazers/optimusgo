@@ -1,4 +1,7 @@
-<aside class="bg-gray-100 flex flex-col h-full flex-shrink-0 overflow-x-hidden">
+<aside
+  class="bg-gray-100 flex flex-col h-full flex-shrink-0 overflow-x-hidden"
+  [ngClass]="{ block: isSidebarOpen, hidden: !isSidebarOpen }"
+>
   <nav
     id="conversations-container"
     class="bg-transparent p-4 flex flex-col flex-1 overflow-y-auto gap-1"
@@ -28,4 +31,5 @@
     <div class="mb-2">2024 - OptimusGO, All rights reserved.</div>
     <div>Version: {{ version }}</div>
   </nav>
+  <!-- <button (click)="isSidebarOpen = !isSidebarOpen">click</button> -->
 </aside>
