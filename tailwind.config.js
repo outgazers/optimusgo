@@ -3,12 +3,9 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
-    colors:{
-
+    colors: {
       "gray-50": "#FCFCFC",
       "gray-100": "#F9FAFB",
       "gray-200": "#F3F4F6",
@@ -42,7 +39,6 @@ module.exports = {
       "teal-800": "#0E515B",
       "teal-900": "#053037",
 
-
       "yellow-50": "#FFFCF6",
       "yellow-100": "#FFF4DA",
       "yellow-200": "#FFE095",
@@ -53,7 +49,6 @@ module.exports = {
       "yellow-700": "#B68408",
       "yellow-800": "#956C06",
       "yellow-900": "#684A01",
-
 
       "purple-50": "#FAF5FF",
       "purple-100": "#F3E8FF",
@@ -66,7 +61,6 @@ module.exports = {
       "purple-800": "#6B21A8",
       "purple-900": "#581C87",
 
-
       "blue-50": "#EFF6FF",
       "blue-100": "#DBEAFE",
       "blue-200": "#BFDBFE",
@@ -77,7 +71,6 @@ module.exports = {
       "blue-700": "#1D4ED8",
       "blue-800": "#1E40AF",
       "blue-900": "#1E3A8A",
-
 
       "red-50": "#FFE1E1",
       "red-100": "#FFD2D2",
@@ -90,42 +83,44 @@ module.exports = {
       "red-800": "#994040",
       "red-900": "#803535",
 
-      "white": '#ffffff',
-      "black": '#000000',
+      white: "#ffffff",
+      black: "#000000",
 
-      "appointment-1": '#1E2F93',
-      "appointment-2": '#FF8C59',
-      "appointment-3": '#6E0093',
-      "appointment-4": '#2FA52D',
-      "appointment-5": '#088CDA',
-      "appointment-6": '#F9316D',
-      "appointment-7": '#036A73',
-      "appointment-8": '#B75F17',
-      "appointment-9": '#FE66E3',
-      "appointment-10": '#7A69EE',
-      "appointment-11": '#900F5C',
-      "appointment-12": '#0475A1',
-      "appointment-13": '#D12030',
-      "appointment-14": '#37C6AB',
-      "appointment-15": '#FFA02E',
-      "appointment-16": '#FE01FC',
-      "appointment-17": '#75082E',
-      "appointment-18": '#4034AB',
-      "appointment-19": '#4DD470',
-      "appointment-20": '#0BB4FE',
-
+      "appointment-1": "#1E2F93",
+      "appointment-2": "#FF8C59",
+      "appointment-3": "#6E0093",
+      "appointment-4": "#2FA52D",
+      "appointment-5": "#088CDA",
+      "appointment-6": "#F9316D",
+      "appointment-7": "#036A73",
+      "appointment-8": "#B75F17",
+      "appointment-9": "#FE66E3",
+      "appointment-10": "#7A69EE",
+      "appointment-11": "#900F5C",
+      "appointment-12": "#0475A1",
+      "appointment-13": "#D12030",
+      "appointment-14": "#37C6AB",
+      "appointment-15": "#FFA02E",
+      "appointment-16": "#FE01FC",
+      "appointment-17": "#75082E",
+      "appointment-18": "#4034AB",
+      "appointment-19": "#4DD470",
+      "appointment-20": "#0BB4FE",
     },
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '1280px',
-      xl: '1440px',
+      sm: "480px",
+      md: "768px",
+      lg: "1280px",
+      xl: "1440px",
     },
     extend: {
-      fontSize: {
-        '2xs': '0.625rem'
+      transitionProperty: {
+        width: "width",
       },
-      colors:{
+      fontSize: {
+        "2xs": "0.625rem",
+      },
+      colors: {
         "bluegray-50": "#F7F8F9",
         "bluegray-100": "#DADEE3",
         "bluegray-200": "#BCC3CD",
@@ -141,9 +136,9 @@ module.exports = {
         "second-200": "#FFD0CE",
         "second-300": "#FF3D32",
         "third-200": "#FEDDC7",
-        "third-500": "#FCC39B",        
+        "third-500": "#FCC39B",
         "fourth-200": "#D0E1FD",
-        "fourth-500": "#ABC9FB",        
+        "fourth-500": "#ABC9FB",
         "fifth-200": "#CAF1D8",
         "fifth-400": "#1DA750",
         "fifth-500": "#A0E6BA",
@@ -154,26 +149,24 @@ module.exports = {
         "seventh-700": "#0E515B",
         "eight-200": "#E5E7EB",
 
-        "white": '#ffffff',
-        "black": '#000000',
-        "transparent": "#00000000"
-
-
+        white: "#ffffff",
+        black: "#000000",
+        transparent: "#00000000",
       },
       width: {
-        'modal-sm': '464px',
-        'modal-md': '600px',
-        'modal-lg': '789px',
-        'modal-xl': '1063px',
-        'modal-full': '100%',
+        "modal-sm": "464px",
+        "modal-md": "600px",
+        "modal-lg": "789px",
+        "modal-xl": "1063px",
+        "modal-full": "100%",
       },
-      
+
       boxShadow: {
-        'button' : '0 0 0 1px #ffffff, 0 0 0 1px #ffffff',
-        1 : '0px 8px 8px -4px #18274B14, 0px 4px 6px -4px #18274B1F',
-        3 : '0px 12px 42px -4px #18274B1F, 0px 8px 18px -6px #18274B1F;'
-      }
-    }
+        button: "0 0 0 1px #ffffff, 0 0 0 1px #ffffff",
+        1: "0px 8px 8px -4px #18274B14, 0px 4px 6px -4px #18274B1F",
+        3: "0px 12px 42px -4px #18274B1F, 0px 8px 18px -6px #18274B1F;",
+      },
+    },
   },
   plugins: [],
-}
+};

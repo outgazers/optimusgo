@@ -42,6 +42,7 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.conversationId = params['id'] ? params['id'] : 0;
+      this.conversation = [];
     });
     this.createForm();
   }
@@ -52,6 +53,7 @@ export class ChatComponent {
 
   private conversationUpdate = effect(() => {
     const conversations = this.conversations();
+
     if (conversations) {
       this.conversation = conversations.find(conversation => conversation.id === this.conversationId)?.messages ?? [];
       this.scrollToBottom();

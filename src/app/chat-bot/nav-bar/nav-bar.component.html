@@ -1,17 +1,57 @@
 <header
-  class="w-full bg-[#BBBBBB] shadow-1 flex justify-between items-center pr-4"
+  class="w-full bg-[#BBBBBB] shadow-1 flex justify-between items-center px-2"
 >
-  <div></div>
-  <nav
-    class="logo h-24 max-lg:h-20 max-md:h-16 flex justify-center items-center"
-  >
-    <img class="h-full max-lg:hidden" src="Optimus.jpg" alt="" />
-    <div class="text-black font-semibold text-lg ml-2 max-md:text-sm">
-      OPTIMUSGO
-    </div>
+  <nav class="flex gap-2 justify-start">
+    <button
+      class="reset"
+      (click)="toggleSidebar()"
+      [ngClass]="{ hidden: isSideBarOpen, block: !isSideBarOpen }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+        />
+      </svg>
+    </button>
+    <button
+      class="reset"
+      (click)="createConversation()"
+      [ngClass]="{
+        hidden: isSideBarOpen,
+        block: !isSideBarOpen
+      }"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </svg>
+    </button>
+
+    <button class="reset logo h-20 max-md:h-16" (click)="goToHome()">
+      <img class="h-full" src="images/logo.png" alt="" />
+    </button>
   </nav>
 
-  <nav target="_blank">
+  <nav target="_blank" class="w-32 flex justify-end">
     <p-button
       styleClass="max-lg:p-3 max-md:p-2 max-md:text-xs max-md:text-sm"
       label="Go to CRM"

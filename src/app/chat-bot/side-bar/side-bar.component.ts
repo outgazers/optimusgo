@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { Conversation } from '../../core/models/chat-histories.model';
 import { ChatDataService } from '../../core/services/chat-data.service';
 import { NgClass } from '@angular/common';
+import { UiService } from '../../core/services/ui.service';
 
 @Component({
   selector: 'app-side-bar',
@@ -16,13 +17,12 @@ import { NgClass } from '@angular/common';
 export class SideBarComponent {
   router = inject(Router);
   chatService = inject(ChatDataService);
+  uiService = inject(UiService);
   conversations = input.required<Conversation[]>();
   conversationsUpdated = output<true>();
   version = environment.version;
-  isSidebarOpen = true;
 
   // TODO: mark the selected conversation as active
-
   onConversationsUpdated = effect(() => {
     if (this.conversations().length) this.scrollToBottom();
   })
@@ -44,5 +44,10 @@ export class SideBarComponent {
       this.router.navigate(['/chat'], { queryParams: { id: res.id } });
     })
   }
+
+  toggleSidebar() {
+    this.uiService.toggleSidebar();
+  }
+
 
 }

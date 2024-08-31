@@ -1,7 +1,22 @@
 <aside
-  class="bg-gray-100 flex flex-col h-full flex-shrink-0 overflow-x-hidden"
-  [ngClass]="{ block: isSidebarOpen, hidden: !isSidebarOpen }"
+  class="bg-gray-100 flex flex-col items-start h-full flex-shrink-0 overflow-x-hidden overflow-y-auto"
 >
+  <button class="reset h-20 mx-2" (click)="toggleSidebar()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+      />
+    </svg>
+  </button>
   <nav
     id="conversations-container"
     class="bg-transparent p-4 flex flex-col flex-1 overflow-y-auto gap-1"
@@ -31,5 +46,4 @@
     <div class="mb-2">2024 - OptimusGO, All rights reserved.</div>
     <div>Version: {{ version }}</div>
   </nav>
-  <!-- <button (click)="isSidebarOpen = !isSidebarOpen">click</button> -->
 </aside>
