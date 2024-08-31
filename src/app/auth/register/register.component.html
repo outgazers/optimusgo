@@ -1,210 +1,204 @@
-<div class="max-h-screen overflow-hidden relative">
-  <div class="background-gradient w-full h-screen"></div>
-  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-    <div class="p-8 rounded-2xl w-[960px] h-[768px] login-card-gradient">
-      <div class="">
-        <div class="text-xl font-medium text-white mb-8">Register</div>
-        <form
-          [formGroup]="registerForm"
-          (ngSubmit)="submitForm()"
-          #formGroupDir="ngForm"
-          class="mb-14"
-        >
-          <div class="grid grid-cols-2 gap-4 custom-scrollbar overflow-y-auto">
-            <div>
-              <label class="block text-sm mb-1 text-white" for="companyName">
-                <span>Company Name: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="companyName"
-                [attr.placeholder]="'companyName'"
-                formControlName="companyName"
-                class="w-full [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-sm mb-1 text-white"
-                for="locationStateAndCity"
-              >
-                <span>Location state and city: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="locationStateAndCity"
-                [attr.placeholder]="'locationStateAndCity'"
-                formControlName="locationStateAndCity"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="mc"
-                >MC#:
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="mc"
-                [attr.placeholder]="'mc'"
-                formControlName="mc"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="fullName">
-                <span>Name: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="fullName"
-                [attr.placeholder]="'fullName'"
-                formControlName="fullName"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="phoneNumber">
-                <span>Phone Number: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="phoneNumber"
-                [attr.placeholder]="'phoneNumber'"
-                formControlName="phoneNumber"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-sm mb-1 text-white"
-                for="yearsInBusiness"
-              >
-                <span>Years in business: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="number"
-                pInputText
-                id="yearsInBusiness"
-                [attr.placeholder]="'yearsInBusiness'"
-                formControlName="yearsInBusiness"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-sm mb-1 text-white"
-                for="modesOfTransportation"
-              >
-                <span>Modes of transportation: </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <p-multiSelect
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-                formControlName="modesOfTransportation"
-                styleClass="w-full"
-                [showClear]="true"
-                [placeholder]="'modesOfTransportation'"
-                appendTo="body"
-                [options]="modeOfTransportationOptions"
-                [showHeader]="false"
-              ></p-multiSelect>
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="industry">
-                <span>What industry do you move freight for? </span>
-                <span class="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="industry"
-                [attr.placeholder]="'industry'"
-                formControlName="industry"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="tms"
-                >Do you have customer facing TMS (if yes, what TMS?)
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="tms"
-                [attr.placeholder]="'tms'"
-                formControlName="tms"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="netTerms"
-                >What net terms you can extend to your customers
-              </label>
-              <input
-                type="text"
-                pInputText
-                id="netTerms"
-                [attr.placeholder]="'netTerms'"
-                formControlName="netTerms"
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-              />
-            </div>
-            <div>
-              <label class="block text-sm mb-1 text-white" for="isAssetBase"
-                >Are you an asset based or non asset based company?
-              </label>
+<div
+  class="h-svh flex flex-col gap-3 justify-center items-center px-6 bg-gradient-to-t from-gray-800 to-gray-700 overflow-hidden p-4"
+>
+  <div
+    class="p-4 rounded-2xl w-2/3 h-full overflow-auto max-lg:w-full max-lg:px-8 max-md:px-3 border shadow-3 backdrop-blur-sm bg-opacity-30 bg-black flex flex-col gap-5"
+  >
+    <div class="text-xl font-medium text-white">Register</div>
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="submitForm()"
+      #formGroupDir="ngForm"
+    >
+      <div
+        class="grid grid-cols-2 max-sm:grid-cols-1 gap-2 custom-scrollbar overflow-y-auto"
+      >
+        <div>
+          <label class="block text-sm mb-1 text-white" for="companyName">
+            <span>Company Name: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="companyName"
+            [attr.placeholder]="'companyName'"
+            formControlName="companyName"
+            class="w-full [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label
+            class="block text-sm mb-1 text-white"
+            for="locationStateAndCity"
+          >
+            <span>Location state and city: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="locationStateAndCity"
+            [attr.placeholder]="'locationStateAndCity'"
+            formControlName="locationStateAndCity"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="mc">MC#: </label>
+          <input
+            type="text"
+            pInputText
+            id="mc"
+            [attr.placeholder]="'mc'"
+            formControlName="mc"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="fullName">
+            <span>Name: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="fullName"
+            [attr.placeholder]="'fullName'"
+            formControlName="fullName"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="phoneNumber">
+            <span>Phone Number: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="phoneNumber"
+            [attr.placeholder]="'phoneNumber'"
+            formControlName="phoneNumber"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="yearsInBusiness">
+            <span>Years in business: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="number"
+            pInputText
+            id="yearsInBusiness"
+            [attr.placeholder]="'yearsInBusiness'"
+            formControlName="yearsInBusiness"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label
+            class="block text-sm mb-1 text-white"
+            for="modesOfTransportation"
+          >
+            <span>Modes of transportation: </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <p-multiSelect
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+            formControlName="modesOfTransportation"
+            styleClass="w-full"
+            [showClear]="true"
+            [placeholder]="'modesOfTransportation'"
+            appendTo="body"
+            [options]="modeOfTransportationOptions"
+            [showHeader]="false"
+          ></p-multiSelect>
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="industry">
+            <span>What industry do you move freight for? </span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="industry"
+            [attr.placeholder]="'industry'"
+            formControlName="industry"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="tms"
+            >Do you have customer facing TMS (if yes, what TMS?)
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="tms"
+            [attr.placeholder]="'tms'"
+            formControlName="tms"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="netTerms"
+            >What net terms you can extend to your customers
+          </label>
+          <input
+            type="text"
+            pInputText
+            id="netTerms"
+            [attr.placeholder]="'netTerms'"
+            formControlName="netTerms"
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+          />
+        </div>
+        <div>
+          <label class="block text-sm mb-1 text-white" for="isAssetBase"
+            >Are you an asset based or non asset based company?
+          </label>
 
-              <p-dropdown
-                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
-                formControlName="isAssetBase"
-                styleClass="w-full"
-                [showClear]="true"
-                [placeholder]="'isAssetBase'"
-                appendTo="body"
-                [options]="[
-                  { label: 'Yes', value: true },
-                  { label: 'No', value: false }
-                ]"
-              ></p-dropdown>
-            </div>
-          </div>
-          <div class="flex flex-col justify-center items-center w-full mt-4">
-            <p-button
-              class="w-full mb-4"
-              type="submit"
-              styleClass="w-full flex justify-center"
-              [disabled]="isLoading || registerForm.invalid"
-            >
-              @if (isLoading) {
-              <svg class="animate-spin" viewBox="25 25 50 50">
-                <circle r="20" cy="50" cx="50"></circle>
-              </svg>
-              } @else { Register }
-            </p-button>
-            <p-button
-              class="w-full"
-              severity="secondary"
-              styleClass="w-full"
-              label="Login"
-              (click)="goToLoginPage()"
-            ></p-button>
-          </div>
-        </form>
-        <div class="text-center text-sm font-normal text-white">
-          <div class="mb-1">2024 - OptimusGO</div>
-          <div>{{ version }}</div>
+          <p-dropdown
+            class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
+            formControlName="isAssetBase"
+            styleClass="w-full"
+            [showClear]="true"
+            [placeholder]="'isAssetBase'"
+            appendTo="body"
+            [options]="[
+              { label: 'Yes', value: true },
+              { label: 'No', value: false }
+            ]"
+          ></p-dropdown>
         </div>
       </div>
-    </div>
+      <div class="flex flex-col justify-center items-center w-full mt-4">
+        <p-button
+          class="w-full mb-4"
+          type="submit"
+          styleClass="w-full flex justify-center"
+          [disabled]="isLoading || registerForm.invalid"
+        >
+          @if (isLoading) {
+          <svg class="animate-spin" viewBox="25 25 50 50">
+            <circle r="20" cy="50" cx="50"></circle>
+          </svg>
+          } @else { Register }
+        </p-button>
+        <p-button
+          class="w-full"
+          severity="secondary"
+          styleClass="w-full"
+          label="Login"
+          (click)="goToLoginPage()"
+        ></p-button>
+      </div>
+    </form>
+  </div>
+  <div class="text-center text-sm font-normal text-white">
+    <div class="mb-1">2024 - OptimusGO - {{ version }}</div>
   </div>
 </div>

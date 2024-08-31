@@ -159,6 +159,16 @@ module.exports = {
         "modal-lg": "789px",
         "modal-xl": "1063px",
         "modal-full": "100%",
+        128: "32rem", // Custom width
+        144: "36rem", // Another custom width
+        160: "40rem", // 160 = 40rem (640px)
+        176: "44rem", // 176 = 44rem (704px)
+      },
+      height: {
+        128: "32rem", // Custom height
+        144: "36rem", // Another custom height
+        160: "40rem", // 160 = 40rem (640px)
+        176: "44rem", // 176 = 44rem (704px)
       },
 
       boxShadow: {
