@@ -12,8 +12,9 @@
         >
           <div class="grid grid-cols-2 gap-4 custom-scrollbar overflow-y-auto">
             <div>
-              <label class="block text-sm mb-1 text-white" for="companyName"
-                >Company Name:
+              <label class="block text-sm mb-1 text-white" for="companyName">
+                <span>Company Name: </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -21,14 +22,16 @@
                 id="companyName"
                 [attr.placeholder]="'companyName'"
                 formControlName="companyName"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
               <label
                 class="block text-sm mb-1 text-white"
                 for="locationStateAndCity"
-                >Location state and city:
+              >
+                <span>Location state and city: </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -36,7 +39,7 @@
                 id="locationStateAndCity"
                 [attr.placeholder]="'locationStateAndCity'"
                 formControlName="locationStateAndCity"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
@@ -49,12 +52,13 @@
                 id="mc"
                 [attr.placeholder]="'mc'"
                 formControlName="mc"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="fullName"
-                >Name:
+              <label class="block text-sm mb-1 text-white" for="fullName">
+                <span>Name: </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -62,12 +66,13 @@
                 id="fullName"
                 [attr.placeholder]="'fullName'"
                 formControlName="fullName"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="phoneNumber"
-                >Phone number:
+              <label class="block text-sm mb-1 text-white" for="phoneNumber">
+                <span>Phone Number: </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -75,12 +80,16 @@
                 id="phoneNumber"
                 [attr.placeholder]="'phoneNumber'"
                 formControlName="phoneNumber"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="yearsInBusiness"
-                >Years in business:
+              <label
+                class="block text-sm mb-1 text-white"
+                for="yearsInBusiness"
+              >
+                <span>Years in business: </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="number"
@@ -88,17 +97,19 @@
                 id="yearsInBusiness"
                 [attr.placeholder]="'yearsInBusiness'"
                 formControlName="yearsInBusiness"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
               <label
                 class="block text-sm mb-1 text-white"
                 for="modesOfTransportation"
-                >Modes of transportation:
+              >
+                <span>Modes of transportation: </span>
+                <span class="text-red-500">*</span>
               </label>
               <p-multiSelect
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
                 formControlName="modesOfTransportation"
                 styleClass="w-full"
                 [showClear]="true"
@@ -109,8 +120,9 @@
               ></p-multiSelect>
             </div>
             <div>
-              <label class="block text-sm mb-1 text-white" for="industry"
-                >What industry do you move freight for?
+              <label class="block text-sm mb-1 text-white" for="industry">
+                <span>What industry do you move freight for? </span>
+                <span class="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -118,7 +130,7 @@
                 id="industry"
                 [attr.placeholder]="'industry'"
                 formControlName="industry"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
@@ -131,7 +143,7 @@
                 id="tms"
                 [attr.placeholder]="'tms'"
                 formControlName="tms"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
@@ -144,7 +156,7 @@
                 id="netTerms"
                 [attr.placeholder]="'netTerms'"
                 formControlName="netTerms"
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
               />
             </div>
             <div>
@@ -153,7 +165,7 @@
               </label>
 
               <p-dropdown
-                class="w-full border-gray-400 text-base text-black"
+                class="w-full border-gray-400 [&.ng-invalid.ng-touched]:border-y-2 text-base text-black"
                 formControlName="isAssetBase"
                 styleClass="w-full"
                 [showClear]="true"
@@ -170,10 +182,15 @@
             <p-button
               class="w-full mb-4"
               type="submit"
-              styleClass="w-full"
-              [disabled]="isLoading"
-              >{{ isLoading ? "Registering..." : "Register" }}</p-button
+              styleClass="w-full flex justify-center"
+              [disabled]="isLoading || registerForm.invalid"
             >
+              @if (isLoading) {
+              <svg class="animate-spin" viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+              </svg>
+              } @else { Register }
+            </p-button>
             <p-button
               class="w-full"
               severity="secondary"

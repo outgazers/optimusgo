@@ -3,14 +3,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
 @import "./../public/styles/index.scss";
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   min-height: 100%;
@@ -28,7 +28,6 @@ html, body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   @apply bg-gray-300 rounded;
-
 }
 
 /* Handle on hover */
@@ -40,3 +39,41 @@ button.reset {
   @apply bg-transparent border-none cursor-pointer px-0;
 }
 
+svg.animate-spin {
+  width: 24px;
+  height: 24px;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+}
+
+.animate-spin circle {
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate4 {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash4 {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dashoffset: -125px;
+  }
+}

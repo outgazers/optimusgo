@@ -55,9 +55,15 @@
             <p-button
               class="w-full mb-4"
               type="submit"
-              styleClass="w-full"
-              label="Sign Up"
-            ></p-button>
+              styleClass="w-full flex justify-center"
+              [disabled]="signupForm.disabled || signupForm.invalid"
+            >
+              @if (signupForm.disabled) {
+              <svg class="animate-spin" viewBox="25 25 50 50">
+                <circle r="20" cy="50" cx="50"></circle>
+              </svg>
+              } @else { Sign Up }
+            </p-button>
           </div>
         </form>
         <div class="text-center text-sm font-normal text-white">
